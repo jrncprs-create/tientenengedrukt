@@ -1,14 +1,25 @@
 import {
   fallbackAboutPage,
   fallbackCvItems,
+  fallbackHomePage,
   fallbackSiteSettings,
   type AboutPageContent,
   type CvItem,
+  type HomePageContent,
   type SiteSettings,
 } from "@/data/siteContent";
-import { getAboutPage, getCvItems, getSiteSettings } from "@/lib/sanity/fetch";
+import {
+  getAboutPage,
+  getCvItems,
+  getHomePage,
+  getSiteSettings,
+} from "@/lib/sanity/fetch";
+import { urlForImage } from "@/sanity/lib/image";
 
 type SanitySiteSettings = Partial<SiteSettings> | null;
+type SanityHomePage =
+  | (Partial<Omit<HomePageContent, "heroImage">> & { heroImage?: unknown })
+  | null;
 type SanityCvItem = Partial<CvItem> | null;
 type SanityAboutPage = Partial<AboutPageContent> | null;
 
@@ -33,12 +44,62 @@ function hasContent(value: unknown) {
   return value !== null && value !== undefined && value !== "";
 }
 
+function resolveImage(source: unknown) {
+  if (!source) return null;
+
+  try {
+    return urlForImage(source).url();
+  } catch {
+    return null;
+  }
+}
+
 export async function getSiteSettingsWithFallback(): Promise<SiteSettings> {
   try {
     const settings = (await getSiteSettings()) as SanitySiteSettings;
     return withFallback(settings, fallbackSiteSettings);
   } catch {
     return fallbackSiteSettings;
+  }
+}
+
+export async function getHomePageWithFallback(): Promise<HomePageContent> {
+  try {
+    const [homePage, siteSettings] = (await Promise.all([
+      getHomePage(),
+      getSiteSettings(),
+    ])) as [SanityHomePage, SanitySiteSettings];
+
+    const settingsFallback = withFallback(siteSettings, fallbackSiteSettings);
+    const homeFallback: HomePageContent = {
+      ...fallbackHomePage,
+      heroKicker: settingsFallback.heroKicker,
+      heroTitle: settingsFallback.heroTitle,
+      heroSubtitle: settingsFallback.heroSubtitle,
+      heroNote: settingsFallback.heroNote,
+      statementKicker: settingsFallback.statementKicker,
+      statementTitle: settingsFallback.statementTitle,
+      statementIntro: settingsFallback.statementIntro,
+      statementBody: settingsFallback.statementBody,
+      contactHeading: settingsFallback.contactHeading,
+      contactText: settingsFallback.contactText,
+      email: settingsFallback.email,
+      instagram: settingsFallback.instagram,
+      location: settingsFallback.location,
+    };
+
+    const homePageText = homePage
+      ? (Object.fromEntries(
+          Object.entries(homePage).filter(([key]) => key !== "heroImage"),
+        ) as Partial<HomePageContent>)
+      : null;
+
+    return {
+      ...withFallback(homePageText, homeFallback),
+      heroImage: resolveImage(homePage?.heroImage) ?? homeFallback.heroImage,
+    };
+  } catch {
+    return fallbackHomePage;
   }
 }
 

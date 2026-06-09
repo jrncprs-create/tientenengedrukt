@@ -130,6 +130,12 @@ img {
     #f5f5f5;
 }
 
+.hero-background-image {
+  object-fit: cover;
+  opacity: 0.46;
+  filter: grayscale(100%);
+}
+
 .hero-video-placeholder::before {
   content: "";
   position: absolute;

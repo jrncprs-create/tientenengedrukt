@@ -4,15 +4,21 @@ import { ProjectCard } from "./ProjectCard";
 
 type ProjectIndexProps = {
   projects: Project[];
+  kicker?: string;
+  title?: string;
 };
 
-export function ProjectIndex({ projects }: ProjectIndexProps) {
+export function ProjectIndex({
+  projects,
+  kicker = "Selected work",
+  title = "Work that moves between image, space and production.",
+}: ProjectIndexProps) {
   return (
     <section className="project-index" aria-labelledby="selected-work-title">
       <ScrollReveal className="section-title-wrap">
-        <p className="section-kicker">Selected work</p>
+        <p className="section-kicker">{kicker}</p>
         <h2 id="selected-work-title" className="project-index-title">
-          Work that moves between image, space and production.
+          {title}
         </h2>
       </ScrollReveal>
 

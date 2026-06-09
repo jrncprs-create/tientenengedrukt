@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ScrollReveal } from "./ScrollReveal";
 
 type HeaderProps = {
@@ -5,12 +6,29 @@ type HeaderProps = {
   title: string;
   subtitle: string;
   note: string;
+  heroImage?: string | null;
 };
 
-export function Header({ kicker, title, subtitle, note }: HeaderProps) {
+export function Header({
+  kicker,
+  title,
+  subtitle,
+  note,
+  heroImage,
+}: HeaderProps) {
   return (
     <section className="hero">
       <div className="hero-video-placeholder" aria-hidden="true">
+        {heroImage ? (
+          <Image
+            src={heroImage}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="hero-background-image"
+          />
+        ) : null}
         <span className="video-shape video-shape-one" />
         <span className="video-shape video-shape-two" />
         <span className="video-shape video-shape-three" />

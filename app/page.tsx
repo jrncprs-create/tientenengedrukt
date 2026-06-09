@@ -1,11 +1,10 @@
 import { Header } from "@/components/Header";
 import { ProjectIndex } from "@/components/ProjectIndex";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { fallbackCapabilities } from "@/data/siteContent";
 import { getProjectsWithFallback } from "@/lib/projects";
 import {
   getCvItemsWithFallback,
-  getSiteSettingsWithFallback,
+  getHomePageWithFallback,
 } from "@/lib/siteContent";
 
 export const revalidate = 60;
@@ -19,75 +18,70 @@ function getInstagramHref(instagram: string) {
 }
 
 export default async function Home() {
-  const [projects, siteSettings, cvItems] = await Promise.all([
+  const [projects, homePage, cvItems] = await Promise.all([
     getProjectsWithFallback(),
-    getSiteSettingsWithFallback(),
+    getHomePageWithFallback(),
     getCvItemsWithFallback(),
   ]);
 
   return (
     <main>
       <Header
-        kicker={siteSettings.heroKicker}
-        title={siteSettings.heroTitle}
-        subtitle={siteSettings.heroSubtitle}
-        note={siteSettings.heroNote}
+        kicker={homePage.heroKicker}
+        title={homePage.heroTitle}
+        subtitle={homePage.heroSubtitle}
+        note={homePage.heroNote}
+        heroImage={homePage.heroImage}
       />
 
       <section className="container home-section home-statement" id="statement">
         <ScrollReveal>
-          <p className="section-kicker">{siteSettings.statementKicker}</p>
-          <h2 className="statement-heading">{siteSettings.statementTitle}</h2>
+          <p className="section-kicker">{homePage.statementKicker}</p>
+          <h2 className="statement-heading">{homePage.statementTitle}</h2>
         </ScrollReveal>
 
         <div className="statement-grid">
           <ScrollReveal>
-            <p className="large-copy">{siteSettings.statementIntro}</p>
+            <p className="large-copy">{homePage.statementIntro}</p>
           </ScrollReveal>
           <ScrollReveal>
-            <p className="body-copy">{siteSettings.statementBody}</p>
+            <p className="body-copy">{homePage.statementBody}</p>
           </ScrollReveal>
         </div>
       </section>
 
       <section className="container home-section" id="work">
-        <ProjectIndex projects={projects} />
+        <ProjectIndex
+          projects={projects}
+          kicker={homePage.workKicker}
+          title={homePage.workTitle}
+        />
       </section>
 
       <section className="container home-section split-section">
         <ScrollReveal className="split-heading">
-          <p className="section-kicker">Approach</p>
-          <h2 className="editorial-heading">
-            From visual direction to buildable detail.
-          </h2>
+          <p className="section-kicker">{homePage.approachKicker}</p>
+          <h2 className="editorial-heading">{homePage.approachTitle}</h2>
         </ScrollReveal>
 
         <div className="split-copy">
           <ScrollReveal>
-            <p className="body-copy">
-              A strong image is only useful when it survives production. The
-              work combines mood, typography, material choices, planning and
-              practical execution.
-            </p>
+            <p className="body-copy">{homePage.approachIntro}</p>
           </ScrollReveal>
           <ScrollReveal>
-            <p className="body-copy">
-              Each project starts with a clear visual rhythm: what should feel
-              loud, what should stay quiet, and where the audience meets the
-              work first.
-            </p>
+            <p className="body-copy">{homePage.approachBody}</p>
           </ScrollReveal>
         </div>
       </section>
 
       <section className="container home-section capabilities-section">
         <ScrollReveal>
-          <p className="section-kicker">Capabilities</p>
-          <h2 className="editorial-heading">What I do</h2>
+          <p className="section-kicker">{homePage.capabilitiesKicker}</p>
+          <h2 className="editorial-heading">{homePage.capabilitiesTitle}</h2>
         </ScrollReveal>
 
         <div className="capability-list">
-          {fallbackCapabilities.map((item) => (
+          {homePage.capabilities.map((item) => (
             <ScrollReveal key={item} className="capability-item">
               <span>{item}</span>
             </ScrollReveal>
@@ -97,8 +91,8 @@ export default async function Home() {
 
       <section className="container home-section cv-section" id="cv">
         <ScrollReveal>
-          <p className="section-kicker">CV</p>
-          <h2 className="editorial-heading">Experience</h2>
+          <p className="section-kicker">{homePage.cvKicker}</p>
+          <h2 className="editorial-heading">{homePage.cvTitle}</h2>
         </ScrollReveal>
 
         <div className="cv-list">
@@ -115,40 +109,37 @@ export default async function Home() {
 
         <ScrollReveal className="skills-line">
           <p>
-            <span>Skills</span> Art direction / Layout / Typography / Image
-            research / Styling / Production / Adobe CC / Web direction
+            <span>{homePage.skillsLabel}</span> {homePage.skillsText}
           </p>
         </ScrollReveal>
       </section>
 
       <section className="container home-section contact-section" id="contact">
         <ScrollReveal>
-          <p className="section-kicker">Contact</p>
-          <h2 className="contact-heading">{siteSettings.contactHeading}</h2>
+          <p className="section-kicker">{homePage.contactKicker}</p>
+          <h2 className="contact-heading">{homePage.contactHeading}</h2>
         </ScrollReveal>
 
         <div className="contact-grid">
           <ScrollReveal>
-            <p className="large-copy">{siteSettings.contactText}</p>
+            <p className="large-copy">{homePage.contactText}</p>
           </ScrollReveal>
 
           <ScrollReveal>
             <ul className="contact-list">
               <li>
                 <span>Mail</span>
-                <a href={`mailto:${siteSettings.email}`}>
-                  {siteSettings.email}
-                </a>
+                <a href={`mailto:${homePage.email}`}>{homePage.email}</a>
               </li>
               <li>
                 <span>Instagram</span>
-                <a href={getInstagramHref(siteSettings.instagram)}>
-                  {siteSettings.instagram}
+                <a href={getInstagramHref(homePage.instagram)}>
+                  {homePage.instagram}
                 </a>
               </li>
               <li>
                 <span>Location</span>
-                <span>{siteSettings.location}</span>
+                <span>{homePage.location}</span>
               </li>
             </ul>
           </ScrollReveal>

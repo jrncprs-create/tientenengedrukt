@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "sanity:sync-content": "node scripts/sync-sanity-content.mjs",
     "start": "next start",
     "lint": "eslint"
   },

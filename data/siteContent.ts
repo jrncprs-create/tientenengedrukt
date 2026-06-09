@@ -15,6 +15,37 @@ export type SiteSettings = {
   location: string;
 };
 
+export type HomePageContent = {
+  heroKicker: string;
+  heroTitle: string;
+  heroSubtitle: string;
+  heroNote: string;
+  heroImage: string | null;
+  statementKicker: string;
+  statementTitle: string;
+  statementIntro: string;
+  statementBody: string;
+  workKicker: string;
+  workTitle: string;
+  approachKicker: string;
+  approachTitle: string;
+  approachIntro: string;
+  approachBody: string;
+  capabilitiesKicker: string;
+  capabilitiesTitle: string;
+  capabilities: string[];
+  cvKicker: string;
+  cvTitle: string;
+  skillsLabel: string;
+  skillsText: string;
+  contactKicker: string;
+  contactHeading: string;
+  contactText: string;
+  email: string;
+  instagram: string;
+  location: string;
+};
+
 export type CvItem = {
   year: string;
   title: string;
@@ -67,6 +98,40 @@ export const fallbackSiteSettings: SiteSettings = {
   email: "hello@joepcuypers.nl",
   instagram: "@joepcuypers",
   location: "Amsterdam / available for projects",
+};
+
+export const fallbackHomePage: HomePageContent = {
+  heroKicker: fallbackSiteSettings.heroKicker,
+  heroTitle: fallbackSiteSettings.heroTitle,
+  heroSubtitle: fallbackSiteSettings.heroSubtitle,
+  heroNote: fallbackSiteSettings.heroNote,
+  heroImage: null,
+  statementKicker: fallbackSiteSettings.statementKicker,
+  statementTitle: fallbackSiteSettings.statementTitle,
+  statementIntro: fallbackSiteSettings.statementIntro,
+  statementBody: fallbackSiteSettings.statementBody,
+  workKicker: "Selected work",
+  workTitle: "Work that moves between image, space and production.",
+  approachKicker: "Approach",
+  approachTitle: "From visual direction to buildable detail.",
+  approachIntro:
+    "A strong image is only useful when it survives production. The work combines mood, typography, material choices, planning and practical execution.",
+  approachBody:
+    "Each project starts with a clear visual rhythm: what should feel loud, what should stay quiet, and where the audience meets the work first.",
+  capabilitiesKicker: "Capabilities",
+  capabilitiesTitle: "What I do",
+  capabilities: fallbackCapabilities,
+  cvKicker: "CV",
+  cvTitle: "Experience",
+  skillsLabel: "Skills",
+  skillsText:
+    "Art direction / Layout / Typography / Image research / Styling / Production / Adobe CC / Web direction",
+  contactKicker: "Contact",
+  contactHeading: fallbackSiteSettings.contactHeading,
+  contactText: fallbackSiteSettings.contactText,
+  email: fallbackSiteSettings.email,
+  instagram: fallbackSiteSettings.instagram,
+  location: fallbackSiteSettings.location,
 };
 
 export const fallbackCvItems: CvItem[] = [

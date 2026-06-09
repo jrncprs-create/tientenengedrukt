@@ -36,6 +36,40 @@ export const siteSettingsQuery = groq`
   }
 `;
 
+export const homePageQuery = groq`
+  *[_type == "homePage"][0]{
+    _id,
+    heroKicker,
+    heroTitle,
+    heroSubtitle,
+    heroNote,
+    heroImage,
+    statementKicker,
+    statementTitle,
+    statementIntro,
+    statementBody,
+    workKicker,
+    workTitle,
+    approachKicker,
+    approachTitle,
+    approachIntro,
+    approachBody,
+    capabilitiesKicker,
+    capabilitiesTitle,
+    capabilities,
+    cvKicker,
+    cvTitle,
+    skillsLabel,
+    skillsText,
+    contactKicker,
+    contactHeading,
+    contactText,
+    email,
+    instagram,
+    location
+  }
+`;
+
 export const cvItemsQuery = groq`
   *[_type == "cvItem"] | order(sortOrder asc) {
     _id,
