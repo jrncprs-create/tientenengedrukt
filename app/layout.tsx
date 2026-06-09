@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import { SiteNav } from "@/components/SiteNav";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -8,8 +9,9 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Joep Cuypers",
-  description: "Portfolio basis voor Joep Cuypers",
+  title: "Joep Cuypers — Portfolio 2026",
+  description:
+    "Portfolio van Joep Cuypers: art direction, visual concepts and production for events, campaigns and branded spaces.",
 };
 
 export default function RootLayout({
@@ -19,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="nl" className={geistSans.variable}>
-      <body>{children}</body>
+      <body>
+        <SiteNav />
+        {children}
+      </body>
     </html>
   );
 }
