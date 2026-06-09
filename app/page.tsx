@@ -5,6 +5,7 @@ import { getProjectsWithFallback } from "@/lib/projects";
 import {
   getCvItemsWithFallback,
   getHomePageWithFallback,
+  getSiteSettingsWithFallback,
 } from "@/lib/siteContent";
 
 export const revalidate = 60;
@@ -18,9 +19,10 @@ function getInstagramHref(instagram: string) {
 }
 
 export default async function Home() {
-  const [projects, homePage, cvItems] = await Promise.all([
+  const [projects, homePage, siteSettings, cvItems] = await Promise.all([
     getProjectsWithFallback(),
     getHomePageWithFallback(),
+    getSiteSettingsWithFallback(),
     getCvItemsWithFallback(),
   ]);
 
@@ -129,17 +131,19 @@ export default async function Home() {
             <ul className="contact-list">
               <li>
                 <span>Mail</span>
-                <a href={`mailto:${homePage.email}`}>{homePage.email}</a>
+                <a href={`mailto:${siteSettings.email}`}>
+                  {siteSettings.email}
+                </a>
               </li>
               <li>
                 <span>Instagram</span>
-                <a href={getInstagramHref(homePage.instagram)}>
-                  {homePage.instagram}
+                <a href={getInstagramHref(siteSettings.instagram)}>
+                  {siteSettings.instagram}
                 </a>
               </li>
               <li>
                 <span>Location</span>
-                <span>{homePage.location}</span>
+                <span>{siteSettings.location}</span>
               </li>
             </ul>
           </ScrollReveal>

@@ -90,6 +90,15 @@ const homePage = {
   contactHeading: "Let’s make the image work.",
   contactText:
     "For collaborations, campaign visuals, event identities or production-based art direction.",
+};
+
+const siteSettings = {
+  _id: "siteSettings",
+  _type: "siteSettings",
+  title: "Joep Cuypers",
+  seoTitle: "Joep Cuypers — Portfolio 2026",
+  seoDescription:
+    "Portfolio van Joep Cuypers: art direction, visual concepts and production for events, campaigns and branded spaces.",
   email: "hello@joepcuypers.nl",
   instagram: "@joepcuypers",
   location: "Amsterdam / available for projects",
@@ -163,6 +172,38 @@ async function syncHomePage() {
   await client.createIfNotExists(homePage);
 }
 
+async function syncSiteSettings() {
+  await client.createIfNotExists(siteSettings);
+
+  await client
+    .patch("siteSettings")
+    .unset([
+      "heroKicker",
+      "heroTitle",
+      "heroSubtitle",
+      "heroNote",
+      "statementKicker",
+      "statementTitle",
+      "statementIntro",
+      "statementBody",
+      "contactHeading",
+      "contactText",
+    ])
+    .setIfMissing({
+      seoTitle: siteSettings.seoTitle,
+      seoDescription: siteSettings.seoDescription,
+      email: siteSettings.email,
+      instagram: siteSettings.instagram,
+      location: siteSettings.location,
+    })
+    .commit();
+
+  await client
+    .patch("homePage")
+    .unset(["email", "instagram", "location"])
+    .commit();
+}
+
 async function syncProjectImages() {
   for (const [slug, paths] of Object.entries(projectImages)) {
     const project = await client.fetch(
@@ -225,5 +266,6 @@ async function syncProjectImages() {
 }
 
 await syncHomePage();
+await syncSiteSettings();
 await syncProjectImages();
 console.log("Sanity content sync complete.");

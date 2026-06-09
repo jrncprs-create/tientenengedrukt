@@ -65,28 +65,7 @@ export async function getSiteSettingsWithFallback(): Promise<SiteSettings> {
 
 export async function getHomePageWithFallback(): Promise<HomePageContent> {
   try {
-    const [homePage, siteSettings] = (await Promise.all([
-      getHomePage(),
-      getSiteSettings(),
-    ])) as [SanityHomePage, SanitySiteSettings];
-
-    const settingsFallback = withFallback(siteSettings, fallbackSiteSettings);
-    const homeFallback: HomePageContent = {
-      ...fallbackHomePage,
-      heroKicker: settingsFallback.heroKicker,
-      heroTitle: settingsFallback.heroTitle,
-      heroSubtitle: settingsFallback.heroSubtitle,
-      heroNote: settingsFallback.heroNote,
-      statementKicker: settingsFallback.statementKicker,
-      statementTitle: settingsFallback.statementTitle,
-      statementIntro: settingsFallback.statementIntro,
-      statementBody: settingsFallback.statementBody,
-      contactHeading: settingsFallback.contactHeading,
-      contactText: settingsFallback.contactText,
-      email: settingsFallback.email,
-      instagram: settingsFallback.instagram,
-      location: settingsFallback.location,
-    };
+    const homePage = (await getHomePage()) as SanityHomePage;
 
     const homePageText = homePage
       ? (Object.fromEntries(
@@ -95,8 +74,8 @@ export async function getHomePageWithFallback(): Promise<HomePageContent> {
       : null;
 
     return {
-      ...withFallback(homePageText, homeFallback),
-      heroImage: resolveImage(homePage?.heroImage) ?? homeFallback.heroImage,
+      ...withFallback(homePageText, fallbackHomePage),
+      heroImage: resolveImage(homePage?.heroImage) ?? fallbackHomePage.heroImage,
     };
   } catch {
     return fallbackHomePage;

@@ -134,20 +134,5 @@ export const homePageType = defineType({
       title: "Contact tekst",
       type: "text",
     }),
-    defineField({
-      name: "email",
-      title: "E-mail",
-      type: "string",
-    }),
-    defineField({
-      name: "instagram",
-      title: "Instagram",
-      type: "string",
-    }),
-    defineField({
-      name: "location",
-      title: "Locatie",
-      type: "string",
-    }),
   ],
 });

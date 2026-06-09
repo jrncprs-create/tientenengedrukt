@@ -1,15 +1,7 @@
 export type SiteSettings = {
   title: string;
-  heroKicker: string;
-  heroTitle: string;
-  heroSubtitle: string;
-  heroNote: string;
-  statementKicker: string;
-  statementTitle: string;
-  statementIntro: string;
-  statementBody: string;
-  contactHeading: string;
-  contactText: string;
+  seoTitle: string;
+  seoDescription: string;
   email: string;
   instagram: string;
   location: string;
@@ -41,9 +33,6 @@ export type HomePageContent = {
   contactKicker: string;
   contactHeading: string;
   contactText: string;
-  email: string;
-  instagram: string;
-  location: string;
 };
 
 export type CvItem = {
@@ -80,36 +69,28 @@ export const fallbackCapabilities = [
 
 export const fallbackSiteSettings: SiteSettings = {
   title: "Joep Cuypers",
-  heroKicker: "Portfolio 2026",
-  heroTitle: "JOEP CUYPERS",
-  heroSubtitle:
-    "Art direction, visual concepts and production for events, campaigns and branded spaces.",
-  heroNote:
-    "From first visual direction to on-site production, Joep works where graphic design, spatial rhythm and cultural events meet.",
-  statementKicker: "Practice",
-  statementTitle: "Designing visual systems for temporary worlds.",
-  statementIntro:
-    "Joep Cuypers develops visual identities, campaign images and production-ready concepts for events, artists, agencies and cultural spaces.",
-  statementBody:
-    "His work moves between graphic design, styling, set logic and hands-on making. The result is visual direction that can live as a poster, a stage cue, a social asset, a spatial detail or a full event language.",
-  contactHeading: "Let’s make the image work.",
-  contactText:
-    "For collaborations, campaign visuals, event identities or production-based art direction.",
+  seoTitle: "Joep Cuypers — Portfolio 2026",
+  seoDescription:
+    "Portfolio van Joep Cuypers: art direction, visual concepts and production for events, campaigns and branded spaces.",
   email: "hello@joepcuypers.nl",
   instagram: "@joepcuypers",
   location: "Amsterdam / available for projects",
 };
 
 export const fallbackHomePage: HomePageContent = {
-  heroKicker: fallbackSiteSettings.heroKicker,
-  heroTitle: fallbackSiteSettings.heroTitle,
-  heroSubtitle: fallbackSiteSettings.heroSubtitle,
-  heroNote: fallbackSiteSettings.heroNote,
+  heroKicker: "Portfolio 2026",
+  heroTitle: "JOEP CUYPERS",
+  heroSubtitle:
+    "Art direction, visual concepts and production for events, campaigns and branded spaces.",
+  heroNote:
+    "From first visual direction to on-site production, Joep works where graphic design, spatial rhythm and cultural events meet.",
   heroImage: null,
-  statementKicker: fallbackSiteSettings.statementKicker,
-  statementTitle: fallbackSiteSettings.statementTitle,
-  statementIntro: fallbackSiteSettings.statementIntro,
-  statementBody: fallbackSiteSettings.statementBody,
+  statementKicker: "Practice",
+  statementTitle: "Designing visual systems for temporary worlds.",
+  statementIntro:
+    "Joep Cuypers develops visual identities, campaign images and production-ready concepts for events, artists, agencies and cultural spaces.",
+  statementBody:
+    "His work moves between graphic design, styling, set logic and hands-on making. The result is visual direction that can live as a poster, a stage cue, a social asset, a spatial detail or a full event language.",
   workKicker: "Selected work",
   workTitle: "Work that moves between image, space and production.",
   approachKicker: "Approach",
@@ -127,11 +108,9 @@ export const fallbackHomePage: HomePageContent = {
   skillsText:
     "Art direction / Layout / Typography / Image research / Styling / Production / Adobe CC / Web direction",
   contactKicker: "Contact",
-  contactHeading: fallbackSiteSettings.contactHeading,
-  contactText: fallbackSiteSettings.contactText,
-  email: fallbackSiteSettings.email,
-  instagram: fallbackSiteSettings.instagram,
-  location: fallbackSiteSettings.location,
+  contactHeading: "Let’s make the image work.",
+  contactText:
+    "For collaborations, campaign visuals, event identities or production-based art direction.",
 };
 
 export const fallbackCvItems: CvItem[] = [

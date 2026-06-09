@@ -13,6 +13,20 @@
 5. Klik `Publish`.
 6. Wacht kort en refresh de site.
 
+## Globale sitegegevens aanpassen
+
+1. Open Sanity Studio: `/studio`.
+2. Ga naar `Site settings`.
+3. Pas alleen globale gegevens aan:
+   - `Site titel`
+   - `SEO titel`
+   - `SEO omschrijving`
+   - `E-mail`
+   - `Instagram`
+   - `Locatie`
+4. Homepage-teksten staan niet in `Site settings`, maar in `Home page`.
+5. Klik `Publish`.
+
 ## Projectfoto's aanpassen
 
 1. Open Sanity Studio: `/studio`.

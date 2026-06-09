@@ -20,16 +20,8 @@ export const siteSettingsQuery = groq`
   *[_type == "siteSettings"][0]{
     _id,
     title,
-    heroKicker,
-    heroTitle,
-    heroSubtitle,
-    heroNote,
-    statementKicker,
-    statementTitle,
-    statementIntro,
-    statementBody,
-    contactHeading,
-    contactText,
+    seoTitle,
+    seoDescription,
     email,
     instagram,
     location
@@ -63,10 +55,7 @@ export const homePageQuery = groq`
     skillsText,
     contactKicker,
     contactHeading,
-    contactText,
-    email,
-    instagram,
-    location
+    contactText
   }
 `;
 
