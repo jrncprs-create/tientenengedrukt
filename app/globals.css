@@ -192,6 +192,10 @@ img {
   mix-blend-mode: screen;
 }
 
+.hero-media-active::after {
+  content: none;
+}
+
 .video-shape {
   position: absolute;
   z-index: 3;
