@@ -31,6 +31,7 @@ The host app registers editorial React components that reuse the existing
 Next.js portfolio classes and layout patterns. In Plasmic Studio, open the
 Insert panel and look for these custom components:
 
+- `Editorial Homepage Template`
 - `Editorial Hero`
 - `Editorial Statement`
 - `Editorial Text Block`
@@ -38,6 +39,14 @@ Insert panel and look for these custom components:
 - `Editorial Project Index`
 
 ## Editable props
+
+`Editorial Homepage Template`
+
+- `heroKicker`
+- `heroTitle`
+- `heroIntro`
+- `contactEmail`
+- `contactText`
 
 `Editorial Hero`
 
@@ -74,7 +83,9 @@ The project index uses the local fallback project data for this test.
 ## Publish and test
 
 1. In Plasmic Studio, set the host app URL to `/plasmic-host`.
-2. Insert one or more custom components on the page with path `/plasmic-test`.
-3. Adjust props in the right sidebar.
-4. Publish the Plasmic project.
-5. Open `/plasmic-test` on the deployed site.
+2. Open the page with path `/plasmic-test`.
+3. Insert `Editorial Homepage Template` first if you want the existing Joep/tientenengedrukt homepage style in one block.
+4. Adjust only the exposed props in the right sidebar.
+5. Optionally add the smaller editorial components underneath for experiments.
+6. Publish the Plasmic project.
+7. Open `/plasmic-test` on the deployed site.

@@ -6,6 +6,11 @@ import { Header } from "@/components/Header";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { projects } from "@/data/projects";
+import {
+  fallbackCapabilities,
+  fallbackCvItems,
+  fallbackSiteSettings,
+} from "@/data/siteContent";
 
 type EditorialHeroProps = {
   kicker: string;
@@ -35,6 +40,14 @@ type EditorialContactBlockProps = {
 type EditorialProjectIndexProps = {
   heading: string;
   intro: string;
+};
+
+type EditorialHomepageTemplateProps = {
+  heroKicker: string;
+  heroTitle: string;
+  heroIntro: string;
+  contactEmail: string;
+  contactText: string;
 };
 
 type PlasmicLoaderLike = {
@@ -144,6 +157,122 @@ export function EditorialProjectIndex({
   );
 }
 
+export function EditorialHomepageTemplate({
+  heroKicker,
+  heroTitle,
+  heroIntro,
+  contactEmail,
+  contactText,
+}: EditorialHomepageTemplateProps) {
+  return (
+    <main>
+      <Header
+        kicker={heroKicker}
+        title={heroTitle}
+        subtitle={heroIntro}
+        note={fallbackSiteSettings.heroNote}
+      />
+
+      <section className="container home-section home-statement">
+        <ScrollReveal>
+          <p className="section-kicker">{fallbackSiteSettings.statementKicker}</p>
+          <h2 className="statement-heading">
+            {fallbackSiteSettings.statementTitle}
+          </h2>
+        </ScrollReveal>
+
+        <div className="statement-grid">
+          <ScrollReveal>
+            <p className="large-copy">{fallbackSiteSettings.statementIntro}</p>
+          </ScrollReveal>
+          <ScrollReveal>
+            <p className="body-copy">{fallbackSiteSettings.statementBody}</p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <EditorialProjectIndex
+        heading="Selected work"
+        intro="Work that moves between image, space and production."
+      />
+
+      <section className="container home-section split-section">
+        <ScrollReveal className="split-heading">
+          <p className="section-kicker">Approach</p>
+          <h2 className="editorial-heading">
+            From visual direction to buildable detail.
+          </h2>
+        </ScrollReveal>
+
+        <div className="split-copy">
+          <ScrollReveal>
+            <p className="body-copy">
+              A strong image is only useful when it survives production. The
+              work combines mood, typography, material choices, planning and
+              practical execution.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal>
+            <p className="body-copy">
+              Each project starts with a clear visual rhythm: what should feel
+              loud, what should stay quiet, and where the audience meets the
+              work first.
+            </p>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <section className="container home-section capabilities-section">
+        <ScrollReveal>
+          <p className="section-kicker">Capabilities</p>
+          <h2 className="editorial-heading">What I do</h2>
+        </ScrollReveal>
+
+        <div className="capability-list">
+          {fallbackCapabilities.map((item) => (
+            <ScrollReveal key={item} className="capability-item">
+              <span>{item}</span>
+            </ScrollReveal>
+          ))}
+        </div>
+      </section>
+
+      <section className="container home-section cv-section">
+        <ScrollReveal>
+          <p className="section-kicker">CV</p>
+          <h2 className="editorial-heading">Experience</h2>
+        </ScrollReveal>
+
+        <div className="cv-list">
+          {fallbackCvItems.map((item) => (
+            <ScrollReveal key={`${item.year}-${item.title}`} className="cv-row">
+              <span className="cv-year">{item.year}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <ScrollReveal className="skills-line">
+          <p>
+            <span>Skills</span> Art direction / Layout / Typography / Image
+            research / Styling / Production / Adobe CC / Web direction
+          </p>
+        </ScrollReveal>
+      </section>
+
+      <EditorialContactBlock
+        title={fallbackSiteSettings.contactHeading}
+        email={contactEmail}
+        location={fallbackSiteSettings.location}
+        text={contactText}
+      />
+    </main>
+  );
+}
+
 type RegisterComponent = (
   component: React.ComponentType<unknown>,
   meta: Record<string, unknown>,
@@ -244,6 +373,37 @@ function registerAll(registerComponent: RegisterComponent) {
           type: "string",
           defaultValue:
             "Work that moves between image, space and production.",
+        },
+      },
+    },
+  );
+
+  registerComponent(
+    EditorialHomepageTemplate as React.ComponentType<unknown>,
+    {
+      name: "EditorialHomepageTemplate",
+      displayName: "Editorial Homepage Template",
+      importPath: "@/components/plasmic/PlasmicEditorialBlocks",
+      props: {
+        heroKicker: {
+          type: "string",
+          defaultValue: fallbackSiteSettings.heroKicker,
+        },
+        heroTitle: {
+          type: "string",
+          defaultValue: fallbackSiteSettings.heroTitle,
+        },
+        heroIntro: {
+          type: "string",
+          defaultValue: fallbackSiteSettings.heroSubtitle,
+        },
+        contactEmail: {
+          type: "string",
+          defaultValue: fallbackSiteSettings.email,
+        },
+        contactText: {
+          type: "string",
+          defaultValue: fallbackSiteSettings.contactText,
         },
       },
     },
