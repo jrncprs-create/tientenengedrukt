@@ -1,14 +1,4 @@
-export type ProjectTheme = "light" | "dark";
-
-export type Project = {
-  title: string;
-  slug: string;
-  year: string;
-  category: string;
-  summary: string;
-  theme: ProjectTheme;
-  images: string[];
-};
+import type { Project } from "@/lib/projects";
 
 const sprinterImages = [
   "/images/projects/sprinter-sound-system/pdf-sprinter-01.jpg",

@@ -1,7 +1,9 @@
 import { Header } from "@/components/Header";
 import { ProjectIndex } from "@/components/ProjectIndex";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { projects } from "@/data/projects";
+import { getProjectsWithFallback } from "@/lib/projects";
+
+export const revalidate = 60;
 
 const capabilities = [
   "Art direction",
@@ -42,7 +44,9 @@ const cvItems = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const projects = await getProjectsWithFallback();
+
   return (
     <main>
       <Header />

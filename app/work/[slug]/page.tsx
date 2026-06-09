@@ -2,14 +2,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { projects } from "@/data/projects";
+import { getProjectsWithFallback } from "@/lib/projects";
+
+export const revalidate = 60;
 
 type ProjectPageProps = {
   params: Promise<{ slug: string }>;
 };
 
+export async function generateStaticParams() {
+  const projects = await getProjectsWithFallback();
+
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
+
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
+  const projects = await getProjectsWithFallback();
   const project = projects.find((item) => item.slug === slug);
 
   if (!project) {

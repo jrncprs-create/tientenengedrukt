@@ -1,5 +1,5 @@
 import { ScrollReveal } from "./ScrollReveal";
-import type { Project } from "@/data/projects";
+import type { Project } from "@/lib/projects";
 import { ProjectCard } from "./ProjectCard";
 
 type ProjectIndexProps = {
