@@ -46,19 +46,58 @@ export const projectType = defineType({
     }),
     defineField({
       name: "coverImage",
-      title: "Cover image",
+      title: "Hoofdbeeld / cover",
       type: "image",
+      description:
+        "Dit beeld wordt gebruikt in overzichten en bovenaan de projectpagina.",
       options: { hotspot: true },
     }),
     defineField({
       name: "galleryImages",
-      title: "Gallery images",
+      title: "Projectbeelden / gallery",
       type: "array",
+      description:
+        "Deze beelden verschijnen op de projectpagina. Sleep om de volgorde te wijzigen.",
       of: [
-        {
-          type: "image",
-          options: { hotspot: true },
-        },
+        defineField({
+          name: "galleryImage",
+          title: "Projectbeeld",
+          type: "object",
+          fields: [
+            defineField({
+              name: "image",
+              title: "Beeld",
+              type: "image",
+              options: { hotspot: true },
+            }),
+            defineField({
+              name: "caption",
+              title: "Bijschrift",
+              type: "string",
+            }),
+            defineField({
+              name: "alt",
+              title: "Alt-tekst",
+              type: "string",
+              description:
+                "Korte beschrijving voor toegankelijkheid en zoekmachines.",
+            }),
+          ],
+          preview: {
+            select: {
+              title: "caption",
+              subtitle: "alt",
+              media: "image",
+            },
+            prepare({ title, subtitle, media }) {
+              return {
+                title: title || "Projectbeeld",
+                subtitle,
+                media,
+              };
+            },
+          },
+        }),
       ],
     }),
     defineField({

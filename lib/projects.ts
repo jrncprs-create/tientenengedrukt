@@ -26,6 +26,12 @@ type SanityProject = {
   sortOrder?: number | null;
 };
 
+type SanityGalleryImage = {
+  image?: unknown;
+  caption?: string | null;
+  alt?: string | null;
+};
+
 const fallbackBySlug = new Map(
   fallbackProjects.map((project) => [project.slug, project]),
 );
@@ -48,10 +54,24 @@ function resolveImage(source: unknown) {
   }
 }
 
+function resolveGalleryImage(source: unknown) {
+  if (!source) return null;
+
+  if (
+    typeof source === "object" &&
+    source !== null &&
+    "image" in source
+  ) {
+    return resolveImage((source as SanityGalleryImage).image);
+  }
+
+  return resolveImage(source);
+}
+
 function resolveImages(project: SanityProject, fallbackProject?: Project) {
   const sanityImages = [
     resolveImage(project.coverImage),
-    ...(project.galleryImages ?? []).map(resolveImage),
+    ...(project.galleryImages ?? []).map(resolveGalleryImage),
   ].filter((image): image is string => Boolean(image));
 
   if (sanityImages.length > 0) {

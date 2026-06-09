@@ -666,49 +666,6 @@ img {
   transform: translateY(0);
 }
 
-.plasmic-home-template {
-  width: 100%;
-  min-height: 0;
-  background: var(--background);
-  color: var(--foreground);
-}
-
-.plasmic-home-template .reveal-on-scroll {
-  opacity: 1;
-  transform: none;
-}
-
-.plasmic-template-hero {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  background: var(--soft);
-}
-
-.plasmic-template-hero::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: auto 0 0;
-  height: 42%;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.96), transparent);
-  pointer-events: none;
-}
-
-.plasmic-template-hero .hero-video-placeholder {
-  inset: 0;
-}
-
-.plasmic-template-hero-inner {
-  min-height: 46rem;
-  display: flex;
-  align-items: stretch;
-}
-
-.plasmic-template-hero .site-header header {
-  padding: 2rem 0 2.2rem;
-}
-
 @keyframes fieldDrift {
   from {
     transform: translate3d(-2%, -1%, 0) rotate(-1deg);
@@ -839,9 +796,6 @@ img {
     gap: 0.35rem;
   }
 
-  .plasmic-template-hero-inner {
-    min-height: 34rem;
-  }
 }
 
 @media (max-width: 560px) {
