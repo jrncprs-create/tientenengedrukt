@@ -134,7 +134,6 @@ img {
   z-index: 0;
   object-fit: cover;
   opacity: 0.46;
-  filter: grayscale(100%);
 }
 
 .hero-background-video {
@@ -145,7 +144,6 @@ img {
   height: 100%;
   object-fit: cover;
   opacity: 0.46;
-  filter: grayscale(100%);
 }
 
 .hero-video-placeholder::before {
