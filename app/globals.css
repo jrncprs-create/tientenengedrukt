@@ -261,6 +261,8 @@ img {
 }
 
 .site-title {
+  position: relative;
+  z-index: 2;
   align-self: center;
   margin: 0;
   max-width: 11ch;
