@@ -18,7 +18,10 @@ import { urlForImage } from "@/sanity/lib/image";
 
 type SanitySiteSettings = Partial<SiteSettings> | null;
 type SanityHomePage =
-  | (Partial<Omit<HomePageContent, "heroImage">> & { heroImage?: unknown })
+  | (Partial<Omit<HomePageContent, "heroImage" | "heroVideoPoster">> & {
+      heroImage?: unknown;
+      heroVideoPoster?: unknown;
+    })
   | null;
 type SanityCvItem = Partial<CvItem> | null;
 type SanityAboutPage = Partial<AboutPageContent> | null;
@@ -54,6 +57,10 @@ function resolveImage(source: unknown) {
   }
 }
 
+function resolveHeroMediaType(source: unknown): HomePageContent["heroMediaType"] {
+  return source === "video" ? "video" : "image";
+}
+
 export async function getSiteSettingsWithFallback(): Promise<SiteSettings> {
   try {
     const settings = (await getSiteSettings()) as SanitySiteSettings;
@@ -69,13 +76,22 @@ export async function getHomePageWithFallback(): Promise<HomePageContent> {
 
     const homePageText = homePage
       ? (Object.fromEntries(
-          Object.entries(homePage).filter(([key]) => key !== "heroImage"),
+          Object.entries(homePage).filter(
+            ([key]) => key !== "heroImage" && key !== "heroVideoPoster",
+          ),
         ) as Partial<HomePageContent>)
       : null;
+    const heroImage =
+      resolveImage(homePage?.heroImage) ?? fallbackHomePage.heroImage;
 
     return {
       ...withFallback(homePageText, fallbackHomePage),
-      heroImage: resolveImage(homePage?.heroImage) ?? fallbackHomePage.heroImage,
+      heroMediaType: resolveHeroMediaType(homePage?.heroMediaType),
+      heroImage,
+      heroVideoPoster:
+        resolveImage(homePage?.heroVideoPoster) ??
+        heroImage ??
+        fallbackHomePage.heroVideoPoster,
     };
   } catch {
     return fallbackHomePage;

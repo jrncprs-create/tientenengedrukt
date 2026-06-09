@@ -26,11 +26,44 @@ export const homePageType = defineType({
       type: "text",
     }),
     defineField({
+      name: "heroMediaType",
+      title: "Hero media type",
+      type: "string",
+      description:
+        "Kies of de hero een afbeelding of MP4-video gebruikt. Als video leeg is, valt de site terug op het beeld of de abstracte achtergrond.",
+      options: {
+        list: [
+          { title: "Afbeelding", value: "image" },
+          { title: "Video (MP4)", value: "video" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "image",
+    }),
+    defineField({
       name: "heroImage",
       title: "Hero beeld",
       type: "image",
       description:
-        "Optioneel. Als dit leeg blijft, gebruikt de site de huidige abstracte hero-achtergrond.",
+        "Optioneel. Wordt gebruikt als afbeelding, als poster/fallback voor video, of als de video leeg is.",
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: "heroVideo",
+      title: "Hero video (MP4)",
+      type: "file",
+      description:
+        "Optioneel. Upload een MP4 zonder geluid of met geluid uit; de site speelt deze muted, loopend en inline af.",
+      options: {
+        accept: "video/mp4",
+      },
+    }),
+    defineField({
+      name: "heroVideoPoster",
+      title: "Hero video poster",
+      type: "image",
+      description:
+        "Optioneel stilstaand beeld voor voordat de video geladen is. Als dit leeg is, gebruikt de site Hero beeld.",
       options: { hotspot: true },
     }),
     defineField({

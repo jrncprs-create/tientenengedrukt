@@ -12,7 +12,10 @@ export type HomePageContent = {
   heroTitle: string;
   heroSubtitle: string;
   heroNote: string;
+  heroMediaType: "image" | "video";
   heroImage: string | null;
+  heroVideo: string | null;
+  heroVideoPoster: string | null;
   statementKicker: string;
   statementTitle: string;
   statementIntro: string;
@@ -84,7 +87,10 @@ export const fallbackHomePage: HomePageContent = {
     "Art direction, visual concepts and production for events, campaigns and branded spaces.",
   heroNote:
     "From first visual direction to on-site production, Joep works where graphic design, spatial rhythm and cultural events meet.",
+  heroMediaType: "image",
   heroImage: null,
+  heroVideo: null,
+  heroVideoPoster: null,
   statementKicker: "Practice",
   statementTitle: "Designing visual systems for temporary worlds.",
   statementIntro:

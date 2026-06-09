@@ -33,7 +33,10 @@ export default async function Home() {
         title={homePage.heroTitle}
         subtitle={homePage.heroSubtitle}
         note={homePage.heroNote}
+        heroMediaType={homePage.heroMediaType}
         heroImage={homePage.heroImage}
+        heroVideo={homePage.heroVideo}
+        heroVideoPoster={homePage.heroVideoPoster}
       />
 
       <section className="container home-section home-statement" id="statement">

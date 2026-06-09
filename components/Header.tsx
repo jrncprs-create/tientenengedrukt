@@ -6,7 +6,10 @@ type HeaderProps = {
   title: string;
   subtitle: string;
   note: string;
+  heroMediaType?: "image" | "video";
   heroImage?: string | null;
+  heroVideo?: string | null;
+  heroVideoPoster?: string | null;
 };
 
 export function Header({
@@ -14,12 +17,29 @@ export function Header({
   title,
   subtitle,
   note,
+  heroMediaType = "image",
   heroImage,
+  heroVideo,
+  heroVideoPoster,
 }: HeaderProps) {
+  const shouldShowVideo = heroMediaType === "video" && heroVideo;
+  const shouldShowImage = !shouldShowVideo && heroImage;
+
   return (
     <section className="hero">
       <div className="hero-video-placeholder" aria-hidden="true">
-        {heroImage ? (
+        {shouldShowVideo ? (
+          <video
+            className="hero-background-video"
+            src={heroVideo}
+            poster={heroVideoPoster ?? heroImage ?? undefined}
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        ) : null}
+        {shouldShowImage ? (
           <Image
             src={heroImage}
             alt=""

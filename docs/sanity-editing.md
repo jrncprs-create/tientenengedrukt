@@ -7,11 +7,17 @@
 3. Pas de bestaande homepage-velden aan:
    - `Hero label`, `Hero titel`, `Hero intro` en `Hero toelichting`.
    - `Statement`, `Work`, `Approach`, `Capabilities`, `CV`, `Skills` en `Contact`.
-4. `Hero beeld` is optioneel.
+4. Kies bij `Hero media type` of de hero een afbeelding of video gebruikt.
+5. `Hero beeld` is optioneel.
    - Als dit leeg blijft, gebruikt de site de huidige abstracte hero-achtergrond.
    - Als je hier een beeld toevoegt, wordt dat als hero-achtergrond gebruikt.
-5. Klik `Publish`.
-6. Wacht kort en refresh de site.
+   - Als je een video gebruikt, werkt dit beeld ook als fallback.
+6. Upload bij `Hero video (MP4)` een MP4 als je video kiest.
+   - De site speelt deze muted, loopend en inline af.
+   - `Hero video poster` is optioneel voor het stilstaande laadbeeld.
+   - Over beeld en video ligt automatisch een wit bitmapraster.
+7. Klik `Publish`.
+8. Wacht kort en refresh de site.
 
 ## Globale sitegegevens aanpassen
 
