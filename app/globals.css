@@ -242,6 +242,12 @@ img {
   align-items: stretch;
 }
 
+.site-header.reveal-on-scroll,
+.site-header.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 .site-header header {
   width: 100%;
   display: grid;
