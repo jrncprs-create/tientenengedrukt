@@ -1,8 +1,5 @@
-import {
-  PlasmicComponent,
-  PlasmicRootProvider,
-} from "@plasmicapp/loader-nextjs";
 import { isPlasmicConfigured, PLASMIC } from "@/lib/plasmic";
+import { PlasmicTestRenderer } from "./PlasmicTestRenderer";
 
 const PLASMIC_TEST_PATH = "/plasmic-test";
 
@@ -15,16 +12,17 @@ export default async function PlasmicTestPage() {
 
   try {
     const plasmicData = await PLASMIC.maybeFetchComponentData(PLASMIC_TEST_PATH);
-    const componentName = plasmicData?.entryCompMetas[0]?.displayName;
+    const componentName = plasmicData?.entryCompMetas[0]?.name;
 
     if (!plasmicData || !componentName) {
       return <main>Plasmic test page not configured yet.</main>;
     }
 
     return (
-      <PlasmicRootProvider loader={PLASMIC} prefetchedData={plasmicData}>
-        <PlasmicComponent component={componentName} />
-      </PlasmicRootProvider>
+      <PlasmicTestRenderer
+        plasmicData={plasmicData}
+        componentName={componentName}
+      />
     );
   } catch {
     return <main>Plasmic test page not configured yet.</main>;
