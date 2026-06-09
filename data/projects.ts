@@ -20,9 +20,9 @@ export const projects: Project[] = [
       "Grafische lijn en productie-uitwerking voor een modulair sound system concept.",
     theme: "dark",
     images: [
-      "/images/projects/_placeholder/placeholder.svg",
-      "/images/projects/_placeholder/placeholder.svg",
-      "/images/projects/_placeholder/placeholder.svg",
+      "/images/projects/sprinter-sound-system/pdf-sprinter-01.jpg",
+      "/images/projects/sprinter-sound-system/pdf-sprinter-02.jpg",
+      "/images/projects/sprinter-sound-system/pdf-sprinter-03.jpg",
     ],
   },
   {
@@ -34,9 +34,9 @@ export const projects: Project[] = [
       "Art direction voor visuele campagne-assets, adaptaties en event-gerelateerde uitrol.",
     theme: "light",
     images: [
-      "/images/projects/_placeholder/placeholder.svg",
-      "/images/projects/_placeholder/placeholder.svg",
-      "/images/projects/_placeholder/placeholder.svg",
+      "/images/projects/bilal-wahib/pdf-bilal-01.jpg",
+      "/images/projects/bilal-wahib/pdf-bilal-02.jpg",
+      "/images/projects/bilal-wahib/pdf-bilal-03.jpg",
     ],
   },
   {
@@ -48,9 +48,9 @@ export const projects: Project[] = [
       "Compacte selectie van werk met focus op typografie, ritme en grafische helderheid.",
     theme: "light",
     images: [
-      "/images/projects/_placeholder/placeholder.svg",
-      "/images/projects/_placeholder/placeholder.svg",
-      "/images/projects/_placeholder/placeholder.svg",
+      "/images/projects/selected-work/pdf-selected-01.jpg",
+      "/images/projects/selected-work/pdf-selected-02.jpg",
+      "/images/projects/selected-work/pdf-selected-03.jpg",
     ],
   },
 ];
