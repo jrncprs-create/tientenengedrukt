@@ -1,79 +1,51 @@
 import { Header } from "@/components/Header";
 import { ProjectIndex } from "@/components/ProjectIndex";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { fallbackCapabilities } from "@/data/siteContent";
 import { getProjectsWithFallback } from "@/lib/projects";
+import {
+  getCvItemsWithFallback,
+  getSiteSettingsWithFallback,
+} from "@/lib/siteContent";
 
 export const revalidate = 60;
 
-const capabilities = [
-  "Art direction",
-  "Campaign visuals",
-  "Event identities",
-  "Spatial styling",
-  "Production design",
-  "Graphic systems",
-  "Image editing",
-  "On-site visual support",
-];
+function getInstagramHref(instagram: string) {
+  if (instagram.startsWith("http")) {
+    return instagram;
+  }
 
-const cvItems = [
-  {
-    year: "2025",
-    title: "Freelance art direction and visual production",
-    text: "Visual concepts, campaign roll-outs and production support for cultural and commercial projects.",
-  },
-  {
-    year: "2024",
-    title: "Campaign and event identity projects",
-    text: "Graphic systems, artist assets and adaptable visual directions for temporary cultural spaces.",
-  },
-  {
-    year: "2023",
-    title: "Spatial and graphic systems for cultural events",
-    text: "Identity work translated into signage, stage moments, screens, print and on-site details.",
-  },
-  {
-    year: "2022",
-    title: "Artist visuals and production support",
-    text: "Image direction, layout, styling references and practical production for music-led projects.",
-  },
-  {
-    year: "2021",
-    title: "Graphic design, layout and image direction",
-    text: "Editorial tests, printed matter, visual research and portfolio-based design work.",
-  },
-];
+  return `https://instagram.com/${instagram.replace(/^@/, "")}`;
+}
 
 export default async function Home() {
-  const projects = await getProjectsWithFallback();
+  const [projects, siteSettings, cvItems] = await Promise.all([
+    getProjectsWithFallback(),
+    getSiteSettingsWithFallback(),
+    getCvItemsWithFallback(),
+  ]);
 
   return (
     <main>
-      <Header />
+      <Header
+        kicker={siteSettings.heroKicker}
+        title={siteSettings.heroTitle}
+        subtitle={siteSettings.heroSubtitle}
+        note={siteSettings.heroNote}
+      />
 
       <section className="container home-section home-statement" id="statement">
         <ScrollReveal>
-          <p className="section-kicker">Practice</p>
-          <h2 className="statement-heading">
-            Designing visual systems for temporary worlds.
-          </h2>
+          <p className="section-kicker">{siteSettings.statementKicker}</p>
+          <h2 className="statement-heading">{siteSettings.statementTitle}</h2>
         </ScrollReveal>
 
         <div className="statement-grid">
           <ScrollReveal>
-            <p className="large-copy">
-              Joep Cuypers develops visual identities, campaign images and
-              production-ready concepts for events, artists, agencies and
-              cultural spaces.
-            </p>
+            <p className="large-copy">{siteSettings.statementIntro}</p>
           </ScrollReveal>
           <ScrollReveal>
-            <p className="body-copy">
-              His work moves between graphic design, styling, set logic and
-              hands-on making. The result is visual direction that can live as a
-              poster, a stage cue, a social asset, a spatial detail or a full
-              event language.
-            </p>
+            <p className="body-copy">{siteSettings.statementBody}</p>
           </ScrollReveal>
         </div>
       </section>
@@ -115,7 +87,7 @@ export default async function Home() {
         </ScrollReveal>
 
         <div className="capability-list">
-          {capabilities.map((item) => (
+          {fallbackCapabilities.map((item) => (
             <ScrollReveal key={item} className="capability-item">
               <span>{item}</span>
             </ScrollReveal>
@@ -152,30 +124,31 @@ export default async function Home() {
       <section className="container home-section contact-section" id="contact">
         <ScrollReveal>
           <p className="section-kicker">Contact</p>
-          <h2 className="contact-heading">Let’s make the image work.</h2>
+          <h2 className="contact-heading">{siteSettings.contactHeading}</h2>
         </ScrollReveal>
 
         <div className="contact-grid">
           <ScrollReveal>
-            <p className="large-copy">
-              For collaborations, campaign visuals, event identities or
-              production-based art direction.
-            </p>
+            <p className="large-copy">{siteSettings.contactText}</p>
           </ScrollReveal>
 
           <ScrollReveal>
             <ul className="contact-list">
               <li>
                 <span>Mail</span>
-                <a href="mailto:hello@joepcuypers.nl">hello@joepcuypers.nl</a>
+                <a href={`mailto:${siteSettings.email}`}>
+                  {siteSettings.email}
+                </a>
               </li>
               <li>
                 <span>Instagram</span>
-                <a href="https://instagram.com/joepcuypers">@joepcuypers</a>
+                <a href={getInstagramHref(siteSettings.instagram)}>
+                  {siteSettings.instagram}
+                </a>
               </li>
               <li>
                 <span>Location</span>
-                <span>Amsterdam / available for projects</span>
+                <span>{siteSettings.location}</span>
               </li>
             </ul>
           </ScrollReveal>

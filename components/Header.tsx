@@ -1,6 +1,13 @@
 import { ScrollReveal } from "./ScrollReveal";
 
-export function Header() {
+type HeaderProps = {
+  kicker: string;
+  title: string;
+  subtitle: string;
+  note: string;
+};
+
+export function Header({ kicker, title, subtitle, note }: HeaderProps) {
   return (
     <section className="hero">
       <div className="hero-video-placeholder" aria-hidden="true">
@@ -12,17 +19,11 @@ export function Header() {
       <div className="container hero-inner">
         <ScrollReveal className="site-header">
           <header>
-            <p className="site-kicker">Portfolio 2026</p>
-            <h1 className="site-title">JOEP CUYPERS</h1>
+            <p className="site-kicker">{kicker}</p>
+            <h1 className="site-title">{title}</h1>
             <div className="site-intro-grid">
-              <p className="site-subtitle">
-                Art direction, visual concepts and production for events,
-                campaigns and branded spaces.
-              </p>
-              <p className="site-note">
-                From first visual direction to on-site production, Joep works
-                where graphic design, spatial rhythm and cultural events meet.
-              </p>
+              <p className="site-subtitle">{subtitle}</p>
+              <p className="site-note">{note}</p>
             </div>
           </header>
         </ScrollReveal>
