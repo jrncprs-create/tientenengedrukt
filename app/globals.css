@@ -112,7 +112,7 @@ img {
 .hero::after {
   content: "";
   position: absolute;
-  z-index: -1;
+  z-index: 1;
   inset: auto 0 0;
   height: 42%;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.96), transparent);
@@ -121,7 +121,7 @@ img {
 
 .hero-video-placeholder {
   position: absolute;
-  z-index: -2;
+  z-index: 0;
   inset: var(--nav-height) 0 0;
   overflow: hidden;
   background:
@@ -230,6 +230,8 @@ img {
 }
 
 .hero-inner {
+  position: relative;
+  z-index: 2;
   min-height: calc(100svh - var(--nav-height));
   display: flex;
   align-items: stretch;
