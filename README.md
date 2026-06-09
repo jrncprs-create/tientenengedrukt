@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# tientenengedrukt
 
-## Getting Started
+Schone technische basis voor een portfolio-site in Next.js (App Router + TypeScript), zonder uitgewerkte eindcontent.
 
-First, run the development server:
+## Lokaal starten
+
+1. Installeer dependencies:
+
+```bash
+npm install
+```
+
+2. Start development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+[http://localhost:3000](http://localhost:3000)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Build en typecheck
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+De build controleert ook TypeScript-validatie.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Projectstructuur (belangrijkste bestanden)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `app/page.tsx`: minimalistische homepage met naam, subtitel en selected work lijst
+- `app/work/[slug]/page.tsx`: simpele dynamische projectpagina
+- `components/Header.tsx`: hero/header met naam en subtitel
+- `components/ProjectIndex.tsx`: overzichtssectie voor projecten
+- `components/ProjectCard.tsx`: klikbare projectregel met hover state
+- `components/ScrollReveal.tsx`: herbruikbare IntersectionObserver reveal component
+- `data/projects.ts`: tijdelijke projectdata die homepage en detailpagina voedt
+- `public/images/projects/_placeholder/placeholder.svg`: tijdelijke placeholder voor beeld
 
-## Deploy on Vercel
+## Projecten aanpassen
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Pas projectinhoud aan in `data/projects.ts`
+- Voeg/verwissel beelden via paden in `images: string[]`
+- Plaats echte bestanden in `public/images/projects/<projectnaam>/...`
+- Update daarna de image-paden in `data/projects.ts`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Styling
+
+- Globale styling staat in `app/globals.css`
+- Opzet is sober: zwart/wit, veel witruimte, grote typografie en eenvoudige hover/reveal-states
