@@ -165,13 +165,27 @@ export function EditorialHomepageTemplate({
   contactText,
 }: EditorialHomepageTemplateProps) {
   return (
-    <main>
-      <Header
-        kicker={heroKicker}
-        title={heroTitle}
-        subtitle={heroIntro}
-        note={fallbackSiteSettings.heroNote}
-      />
+    <main className="plasmic-home-template">
+      <section className="plasmic-template-hero">
+        <div className="hero-video-placeholder" aria-hidden="true">
+          <span className="video-shape video-shape-one" />
+          <span className="video-shape video-shape-two" />
+          <span className="video-shape video-shape-three" />
+        </div>
+
+        <div className="container plasmic-template-hero-inner">
+          <div className="site-header">
+            <header>
+              <p className="site-kicker">{heroKicker}</p>
+              <h1 className="site-title">{heroTitle}</h1>
+              <div className="site-intro-grid">
+                <p className="site-subtitle">{heroIntro}</p>
+                <p className="site-note">{fallbackSiteSettings.heroNote}</p>
+              </div>
+            </header>
+          </div>
+        </div>
+      </section>
 
       <section className="container home-section home-statement">
         <ScrollReveal>
