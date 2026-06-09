@@ -20,7 +20,6 @@ export function Header({
   heroMediaType = "image",
   heroImage,
   heroVideo,
-  heroVideoPoster,
 }: HeaderProps) {
   const shouldShowVideo = heroMediaType === "video" && heroVideo;
   const shouldShowImage = !shouldShowVideo && heroImage;
@@ -32,7 +31,6 @@ export function Header({
           <video
             className="hero-background-video"
             src={heroVideo}
-            poster={heroVideoPoster ?? undefined}
             preload="metadata"
             autoPlay
             muted
