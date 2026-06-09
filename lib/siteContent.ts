@@ -90,7 +90,6 @@ export async function getHomePageWithFallback(): Promise<HomePageContent> {
       heroImage,
       heroVideoPoster:
         resolveImage(homePage?.heroVideoPoster) ??
-        heroImage ??
         fallbackHomePage.heroVideoPoster,
     };
   } catch {

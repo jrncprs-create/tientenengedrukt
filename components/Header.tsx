@@ -32,7 +32,8 @@ export function Header({
           <video
             className="hero-background-video"
             src={heroVideo}
-            poster={heroVideoPoster ?? heroImage ?? undefined}
+            poster={heroVideoPoster ?? undefined}
+            preload="metadata"
             autoPlay
             muted
             loop

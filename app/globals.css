@@ -178,10 +178,13 @@ img {
   z-index: 2;
   inset: 0;
   pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.72) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.72) 1px, transparent 1px);
-  background-size: 8px 8px;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.78) 0,
+    rgba(255, 255, 255, 0.78) 1px,
+    transparent 1px,
+    transparent 8px
+  );
   mix-blend-mode: screen;
 }
 

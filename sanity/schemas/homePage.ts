@@ -45,7 +45,7 @@ export const homePageType = defineType({
       title: "Hero beeld",
       type: "image",
       description:
-        "Optioneel. Wordt gebruikt als afbeelding, als poster/fallback voor video, of als de video leeg is.",
+        "Optioneel. Wordt gebruikt voor de hero-afbeelding of als fallback als video leeg is.",
       options: { hotspot: true },
     }),
     defineField({
@@ -63,7 +63,7 @@ export const homePageType = defineType({
       title: "Hero video poster",
       type: "image",
       description:
-        "Optioneel stilstaand beeld voor voordat de video geladen is. Als dit leeg is, gebruikt de site Hero beeld.",
+        "Optioneel stilstaand beeld voor voordat de video geladen is. Laat leeg om het eerste frame van de MP4 te gebruiken.",
       options: { hotspot: true },
     }),
     defineField({

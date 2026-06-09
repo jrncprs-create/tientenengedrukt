@@ -11,11 +11,11 @@
 5. `Hero beeld` is optioneel.
    - Als dit leeg blijft, gebruikt de site de huidige abstracte hero-achtergrond.
    - Als je hier een beeld toevoegt, wordt dat als hero-achtergrond gebruikt.
-   - Als je een video gebruikt, werkt dit beeld ook als fallback.
+   - Als je video kiest, wordt dit beeld alleen gebruikt als de video leeg is.
 6. Upload bij `Hero video (MP4)` een MP4 als je video kiest.
    - De site speelt deze muted, loopend en inline af.
-   - `Hero video poster` is optioneel voor het stilstaande laadbeeld.
-   - Over beeld en video ligt automatisch een wit bitmapraster.
+   - Laat `Hero video poster` leeg om het eerste frame van de MP4 te gebruiken.
+   - Over beeld en video liggen automatisch alleen witte horizontale rasterlijnen.
 7. Klik `Publish`.
 8. Wacht kort en refresh de site.
 
