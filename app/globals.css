@@ -130,6 +130,10 @@ img {
     #f5f5f5;
 }
 
+.hero-media-active {
+  background: #f5f5f5;
+}
+
 .hero-background-image {
   z-index: 0;
   object-fit: cover;
@@ -166,6 +170,10 @@ img {
       transparent 18px
     );
   animation: fieldDrift 22s ease-in-out infinite alternate;
+}
+
+.hero-media-active::before {
+  content: none;
 }
 
 .hero-video-placeholder::after {

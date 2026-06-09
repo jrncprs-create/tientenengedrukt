@@ -23,10 +23,14 @@ export function Header({
 }: HeaderProps) {
   const shouldShowVideo = heroMediaType === "video" && heroVideo;
   const shouldShowImage = !shouldShowVideo && heroImage;
+  const hasHeroMedia = shouldShowVideo || shouldShowImage;
 
   return (
     <section className="hero">
-      <div className="hero-video-placeholder" aria-hidden="true">
+      <div
+        className={`hero-video-placeholder${hasHeroMedia ? " hero-media-active" : ""}`}
+        aria-hidden="true"
+      >
         {shouldShowVideo ? (
           <video
             className="hero-background-video"
@@ -48,9 +52,13 @@ export function Header({
             className="hero-background-image"
           />
         ) : null}
-        <span className="video-shape video-shape-one" />
-        <span className="video-shape video-shape-two" />
-        <span className="video-shape video-shape-three" />
+        {!hasHeroMedia ? (
+          <>
+            <span className="video-shape video-shape-one" />
+            <span className="video-shape video-shape-two" />
+            <span className="video-shape video-shape-three" />
+          </>
+        ) : null}
       </div>
 
       <div className="container hero-inner">
