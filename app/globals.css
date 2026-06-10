@@ -112,7 +112,7 @@ img {
 .hero::after {
   content: "";
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   inset: auto 0 0;
   height: 42%;
   background: linear-gradient(to top, rgba(255, 255, 255, 0.96), transparent);
@@ -232,7 +232,6 @@ img {
 
 .hero-inner {
   position: relative;
-  z-index: 2;
   min-height: calc(100svh - var(--nav-height));
   display: flex;
   align-items: stretch;
@@ -284,6 +283,8 @@ img {
 }
 
 .site-intro-grid {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(220px, 0.52fr);
   gap: 2rem;
