@@ -1,4 +1,5 @@
 import { projects as fallbackProjects } from "@/data/projects";
+import { projectSlugFromTitle } from "@/lib/projectSlug";
 import { getSanityProjects } from "@/lib/sanity/fetch";
 import { urlForImage } from "@/sanity/lib/image";
 
@@ -16,6 +17,7 @@ export type Project = {
 
 type SanityProject = {
   title?: string | null;
+  slug?: string | { current?: string | null } | null;
   year?: string | null;
   category?: string | null;
   summary?: string | null;
@@ -31,21 +33,19 @@ type SanityGalleryImage = {
   alt?: string | null;
 };
 
+const fallbackBySlug = new Map(
+  fallbackProjects.map((project) => [project.slug, project]),
+);
+
 const fallbackByTitle = new Map(
   fallbackProjects.map((project) => [project.title.toLowerCase(), project]),
 );
 
 const selectedWorkFallback = fallbackProjects[0];
 
-export function slugifyProjectTitle(title: string) {
-  return title
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "")
-    .replace(/-{2,}/g, "-") || "project";
+function resolveSanitySlug(slug: SanityProject["slug"]) {
+  if (typeof slug === "string") return slug;
+  return slug?.current ?? "";
 }
 
 function resolveImage(source: unknown) {
@@ -86,14 +86,19 @@ function resolveImages(project: SanityProject, fallbackProject?: Project) {
 }
 
 function mapSanityProject(project: SanityProject): Project | null {
-  const title = project.title ?? "";
+  const title = project.title?.trim() ?? "";
 
   if (!title) {
     return null;
   }
 
-  const slug = slugifyProjectTitle(title);
-  const fallbackProject = fallbackByTitle.get(title.toLowerCase());
+  const slug = projectSlugFromTitle(title);
+  const sanitySlug = resolveSanitySlug(project.slug);
+  const fallbackProject =
+    fallbackByTitle.get(title.toLowerCase()) ??
+    fallbackBySlug.get(sanitySlug) ??
+    fallbackBySlug.get(slug) ??
+    undefined;
 
   return {
     title,

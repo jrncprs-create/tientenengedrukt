@@ -1,9 +1,11 @@
 import { defineLocations } from "sanity/presentation";
+import { projectSlugFromTitle } from "@/lib/projectSlug";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://tientenengedrukt.vercel.app";
 
 export const previewUrl = `${siteUrl}/api/draft-mode/enable?redirect=/`;
+export const draftModeUrl = `${siteUrl}/api/draft-mode/enable`;
 
 export const presentationLocations = {
   homePage: defineLocations({
@@ -40,20 +42,22 @@ export const presentationLocations = {
     }),
   }),
   project: defineLocations({
-    select: { title: "title", slug: "slug.current" },
+    select: { title: "title" },
     resolve: (document) => {
-      if (!document?.slug) {
+      if (!document?.title) {
         return {
-          message: "Publish een slug om de projectpagina te previewen.",
+          message: "Voeg een titel toe om de projectpagina te previewen.",
           tone: "caution",
         };
       }
+
+      const slug = projectSlugFromTitle(document.title);
 
       return {
         locations: [
           {
             title: document.title || "Project",
-            href: `/work/${document.slug}`,
+            href: `/work/${slug}`,
           },
         ],
       };

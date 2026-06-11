@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "sanity:sync-content": "node scripts/sync-sanity-content.mjs",
+    "sanity:migrate-ids": "node scripts/migrate-sanity-ids.mjs",
     "start": "next start",
     "lint": "eslint"
   },
@@ -15,7 +16,8 @@
     "next-sanity": "^13.0.11",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "sanity": "^5.30.0"
+    "sanity": "^5.30.0",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@types/node": "^20",

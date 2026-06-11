@@ -2,7 +2,7 @@ import { defineConfig } from "sanity";
 import { presentationTool } from "sanity/presentation";
 import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
-import { presentationLocations, previewUrl } from "@/sanity/presentation";
+import { draftModeUrl, presentationLocations } from "@/sanity/presentation";
 import { schemaTypes } from "@/sanity/schemas";
 import { structure } from "@/sanity/structure";
 
@@ -20,7 +20,10 @@ export default defineConfig({
     presentationTool({
       title: "Preview",
       previewUrl: {
-        initial: previewUrl,
+        initial: draftModeUrl,
+        previewMode: {
+          enable: "/api/draft-mode/enable",
+        },
       },
       resolve: {
         locations: presentationLocations,
