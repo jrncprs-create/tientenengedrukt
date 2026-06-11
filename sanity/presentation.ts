@@ -1,7 +1,9 @@
 import { defineLocations } from "sanity/presentation";
 
-export const previewUrl =
+const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://tientenengedrukt.vercel.app";
+
+export const previewUrl = `${siteUrl}/api/draft-mode/enable?redirect=/`;
 
 export const presentationLocations = {
   homePage: defineLocations({
