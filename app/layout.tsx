@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "Portfolio van Joep Cuypers: art direction, visual concepts and production for events, campaigns and branded spaces.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
