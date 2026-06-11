@@ -16,7 +16,6 @@ export type Project = {
 
 type SanityProject = {
   title?: string | null;
-  slug?: string | { current?: string | null } | null;
   year?: string | null;
   category?: string | null;
   summary?: string | null;
@@ -32,16 +31,21 @@ type SanityGalleryImage = {
   alt?: string | null;
 };
 
-const fallbackBySlug = new Map(
-  fallbackProjects.map((project) => [project.slug, project]),
+const fallbackByTitle = new Map(
+  fallbackProjects.map((project) => [project.title.toLowerCase(), project]),
 );
 
-const selectedWorkFallback =
-  fallbackBySlug.get("selected-work") ?? fallbackProjects[0];
+const selectedWorkFallback = fallbackProjects[0];
 
-function resolveSlug(slug: SanityProject["slug"]) {
-  if (typeof slug === "string") return slug;
-  return slug?.current ?? "";
+export function slugifyProjectTitle(title: string) {
+  return title
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .replace(/-{2,}/g, "-") || "project";
 }
 
 function resolveImage(source: unknown) {
@@ -82,14 +86,14 @@ function resolveImages(project: SanityProject, fallbackProject?: Project) {
 }
 
 function mapSanityProject(project: SanityProject): Project | null {
-  const slug = resolveSlug(project.slug);
   const title = project.title ?? "";
 
-  if (!slug || !title) {
+  if (!title) {
     return null;
   }
 
-  const fallbackProject = fallbackBySlug.get(slug);
+  const slug = slugifyProjectTitle(title);
+  const fallbackProject = fallbackByTitle.get(title.toLowerCase());
 
   return {
     title,
@@ -100,6 +104,24 @@ function mapSanityProject(project: SanityProject): Project | null {
     theme: project.theme ?? fallbackProject?.theme ?? "light",
     images: resolveImages(project, fallbackProject),
   };
+}
+
+function dedupeSlugs(projects: Project[]) {
+  const seen = new Map<string, number>();
+
+  return projects.map((project) => {
+    const count = seen.get(project.slug) ?? 0;
+    seen.set(project.slug, count + 1);
+
+    if (count === 0) {
+      return project;
+    }
+
+    return {
+      ...project,
+      slug: `${project.slug}-${count + 1}`,
+    };
+  });
 }
 
 export async function getProjectsWithFallback(): Promise<Project[]> {
@@ -125,7 +147,7 @@ export async function getProjectsWithFallback(): Promise<Project[]> {
       .map(mapSanityProject)
       .filter((project): project is Project => Boolean(project));
 
-    return mappedProjects.length > 0 ? mappedProjects : fallbackProjects;
+    return mappedProjects.length > 0 ? dedupeSlugs(mappedProjects) : fallbackProjects;
   } catch {
     return fallbackProjects;
   }
