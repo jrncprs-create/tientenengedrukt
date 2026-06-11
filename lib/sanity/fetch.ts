@@ -1,4 +1,5 @@
-import { sanityClient } from "@/sanity/lib/client";
+import { draftMode } from "next/headers";
+import { sanityClient, sanityPreviewClient } from "@/sanity/lib/client";
 import {
   aboutPageQuery,
   cvItemsQuery,
@@ -7,11 +8,17 @@ import {
   siteSettingsQuery,
 } from "./queries";
 
-const options = { next: { revalidate: 10 } };
+const liveOptions = { next: { revalidate: 10 } };
+
+async function getClient() {
+  const draft = await draftMode();
+  return draft.isEnabled ? sanityPreviewClient : sanityClient;
+}
 
 export async function getSanityProjects() {
   try {
-    return await sanityClient.fetch(projectsQuery, {}, options);
+    const client = await getClient();
+    return await client.fetch(projectsQuery, {}, liveOptions);
   } catch {
     return [];
   }
@@ -19,7 +26,8 @@ export async function getSanityProjects() {
 
 export async function getSiteSettings() {
   try {
-    return await sanityClient.fetch(siteSettingsQuery, {}, options);
+    const client = await getClient();
+    return await client.fetch(siteSettingsQuery, {}, liveOptions);
   } catch {
     return null;
   }
@@ -27,7 +35,8 @@ export async function getSiteSettings() {
 
 export async function getHomePage() {
   try {
-    return await sanityClient.fetch(homePageQuery, {}, options);
+    const client = await getClient();
+    return await client.fetch(homePageQuery, {}, liveOptions);
   } catch {
     return null;
   }
@@ -35,7 +44,8 @@ export async function getHomePage() {
 
 export async function getCvItems() {
   try {
-    return await sanityClient.fetch(cvItemsQuery, {}, options);
+    const client = await getClient();
+    return await client.fetch(cvItemsQuery, {}, liveOptions);
   } catch {
     return [];
   }
@@ -43,7 +53,8 @@ export async function getCvItems() {
 
 export async function getAboutPage() {
   try {
-    return await sanityClient.fetch(aboutPageQuery, {}, options);
+    const client = await getClient();
+    return await client.fetch(aboutPageQuery, {}, liveOptions);
   } catch {
     return null;
   }
