@@ -7,9 +7,11 @@ import {
   siteSettingsQuery,
 } from "./queries";
 
+const options = { next: { revalidate: 10 } };
+
 export async function getSanityProjects() {
   try {
-    return await sanityClient.fetch(projectsQuery);
+    return await sanityClient.fetch(projectsQuery, {}, options);
   } catch {
     return [];
   }
@@ -17,7 +19,7 @@ export async function getSanityProjects() {
 
 export async function getSiteSettings() {
   try {
-    return await sanityClient.fetch(siteSettingsQuery);
+    return await sanityClient.fetch(siteSettingsQuery, {}, options);
   } catch {
     return null;
   }
@@ -25,7 +27,7 @@ export async function getSiteSettings() {
 
 export async function getHomePage() {
   try {
-    return await sanityClient.fetch(homePageQuery);
+    return await sanityClient.fetch(homePageQuery, {}, options);
   } catch {
     return null;
   }
@@ -33,7 +35,7 @@ export async function getHomePage() {
 
 export async function getCvItems() {
   try {
-    return await sanityClient.fetch(cvItemsQuery);
+    return await sanityClient.fetch(cvItemsQuery, {}, options);
   } catch {
     return [];
   }
@@ -41,7 +43,7 @@ export async function getCvItems() {
 
 export async function getAboutPage() {
   try {
-    return await sanityClient.fetch(aboutPageQuery);
+    return await sanityClient.fetch(aboutPageQuery, {}, options);
   } catch {
     return null;
   }
