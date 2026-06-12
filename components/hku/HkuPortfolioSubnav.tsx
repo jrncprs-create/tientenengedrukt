@@ -24,6 +24,9 @@ export function HkuPortfolioSubnav() {
         <a href="#cv" className="hku-subnav-link">
           CV
         </a>
+        <a href="#contact" className="hku-subnav-link">
+          Contact
+        </a>
         <a href="#intro" className="hku-subnav-link hku-subnav-top">
           Terug naar boven
         </a>

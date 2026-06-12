@@ -18,6 +18,23 @@ function formatCounter(current: number, total: number) {
   return `${String(current).padStart(pad, "0")} / ${total}`;
 }
 
+function getSlideCaption(
+  items: { alt: string; label?: string }[],
+  total: number,
+): string | undefined {
+  if (total <= 1 && items.length <= 1) {
+    return undefined;
+  }
+
+  const captions = items
+    .map((item) => item.label ?? item.alt)
+    .filter(Boolean);
+
+  if (captions.length === 0) return undefined;
+  if (captions.length === 1) return captions[0];
+  return captions.join(" / ");
+}
+
 export function HkuProcessViewer({
   projectTitle,
   mediaGroups,
@@ -34,19 +51,24 @@ export function HkuProcessViewer({
   );
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [direction, setDirection] = useState<"forward" | "backward">("forward");
   const viewerRef = useRef<HTMLElement>(null);
   const touchStartX = useRef<number | null>(null);
   const isActiveRef = useRef(false);
 
   const total = slides.length;
   const currentSlide = slides[activeIndex];
+  const isSingleSlide = total <= 1;
+  const showControls = total > 1;
 
   const goTo = useCallback(
     (index: number) => {
       if (total === 0) return;
-      setActiveIndex(Math.max(0, Math.min(index, total - 1)));
+      const nextIndex = Math.max(0, Math.min(index, total - 1));
+      setDirection(nextIndex < activeIndex ? "backward" : "forward");
+      setActiveIndex(nextIndex);
     },
-    [total],
+    [activeIndex, total],
   );
 
   const goPrev = useCallback(() => goTo(activeIndex - 1), [activeIndex, goTo]);
@@ -94,7 +116,7 @@ export function HkuProcessViewer({
 
   if (!currentSlide || total === 0) return null;
 
-  const caption = currentSlide.item.label ?? currentSlide.item.alt;
+  const caption = getSlideCaption(currentSlide.items, total);
   const phaseDisplay =
     sectionLabel ?? getHkuPhaseDisplay(currentSlide.groupTitle);
   const canGoPrev = activeIndex > 0;
@@ -103,7 +125,7 @@ export function HkuProcessViewer({
   return (
     <section
       ref={viewerRef}
-      className="hku-process-viewer"
+      className={`hku-process-viewer${isSingleSlide ? " is-single" : ""}`}
       aria-label={`Media viewer ${projectTitle}`}
       tabIndex={-1}
     >
@@ -112,12 +134,14 @@ export function HkuProcessViewer({
           <p className="hku-viewer-phase">{phaseDisplay}</p>
           <p className="hku-viewer-group">{currentSlide.groupTitle}</p>
         </div>
-        <p className="hku-viewer-counter" aria-live="polite">
-          {formatCounter(activeIndex + 1, total)}
-        </p>
+        {showControls ? (
+          <p className="hku-viewer-counter" aria-live="polite">
+            {formatCounter(activeIndex + 1, total)}
+          </p>
+        ) : null}
       </header>
 
-      {hideTimeline ? null : (
+      {hideTimeline || isSingleSlide ? null : (
         <HkuProcessTimeline
           groups={mediaGroups}
           activeGroupIndex={currentSlide.groupIndex}
@@ -134,6 +158,7 @@ export function HkuProcessViewer({
           touchStartX.current = event.touches[0]?.clientX ?? null;
         }}
         onTouchEnd={(event) => {
+          if (!showControls) return;
           const start = touchStartX.current;
           const end = event.changedTouches[0]?.clientX;
           touchStartX.current = null;
@@ -145,38 +170,45 @@ export function HkuProcessViewer({
           else goPrev();
         }}
       >
-        <button
-          type="button"
-          className="hku-viewer-nav hku-viewer-nav-prev"
-          onClick={goPrev}
-          disabled={!canGoPrev}
-          aria-label="Previous"
-        >
-          Previous
-        </button>
+        {showControls ? (
+          <button
+            type="button"
+            className="hku-viewer-nav hku-viewer-nav-prev"
+            onClick={goPrev}
+            disabled={!canGoPrev}
+            aria-label="Vorige"
+          >
+            <span aria-hidden="true">‹</span>
+          </button>
+        ) : null}
 
-        <div className="hku-viewer-stage" key={currentSlide.item.src}>
+        <div
+          className={`hku-viewer-stage hku-viewer-stage-${direction}`}
+          key={currentSlide.key}
+        >
           <HkuMediaFrame
-            item={currentSlide.item}
+            items={currentSlide.items}
             caption={caption}
             priority={activeIndex === 0}
           />
         </div>
 
-        <button
-          type="button"
-          className="hku-viewer-nav hku-viewer-nav-next"
-          onClick={goNext}
-          disabled={!canGoNext}
-          aria-label="Next"
-        >
-          Next
-        </button>
+        {showControls ? (
+          <button
+            type="button"
+            className="hku-viewer-nav hku-viewer-nav-next"
+            onClick={goNext}
+            disabled={!canGoNext}
+            aria-label="Volgende"
+          >
+            <span aria-hidden="true">›</span>
+          </button>
+        ) : null}
       </div>
 
-      <p className="hku-viewer-hint">
-        Previous / Next, arrow keys, or swipe
-      </p>
+      {showControls ? (
+        <p className="hku-viewer-hint">Pijltjes of swipe</p>
+      ) : null}
     </section>
   );
 }

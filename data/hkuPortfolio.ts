@@ -58,6 +58,7 @@ const tdfwBase = ["5_TDFW Posters"];
 
 const artDesignLook1: HkuMediaGroup = {
   title: "Look 01",
+  pairPortraits: true,
   items: numberedFiles(
     [...artDesignBase, "Look 1"],
     "LOOK 1_",
@@ -70,6 +71,7 @@ const artDesignLook1: HkuMediaGroup = {
 
 const artDesignLook2: HkuMediaGroup = {
   title: "Look 02",
+  pairPortraits: true,
   items: numberedFiles(
     [...artDesignBase, "Look 2"],
     "LOOK 2_",
@@ -82,6 +84,7 @@ const artDesignLook2: HkuMediaGroup = {
 
 const artDesignLook3: HkuMediaGroup = {
   title: "Look 03",
+  pairPortraits: true,
   items: numberedFiles(
     [...artDesignBase, "Look 3"],
     "LOOK 3_",
@@ -275,6 +278,7 @@ export const hkuPortfolio: HkuPortfolioContent = {
           mediaGroups: [
             {
               title: "Werkplaats & proces",
+              pairPortraits: true,
               items: [
                 hkuFile(
                   [...artDesignBase, "Proces", "IMG_2016.jpg"],
@@ -398,7 +402,7 @@ export const hkuPortfolio: HkuPortfolioContent = {
           id: "reflectie",
           label: "",
           type: "reflection",
-          title: "Wat HKU hier moet zien",
+          title: "Van onderzoek naar beeld",
           text: "Ik heb mezelf uitgedaagd om verder te gaan dan alleen styling. Door zelf kledingstukken te maken en druktechnieken in te zetten, kon ik mijn concept persoonlijker uitwerken. Het thema anarchie gaf richting, maar ook ruimte om te experimenteren. Kritische keuzes — zoals vier looks terugbrengen naar drie — maakten de serie sterker. De expo was minder voorbereid dan ik wilde, maar de video compenseerde dat met een extra laag beweging en aandacht.",
         },
         {
@@ -466,7 +470,7 @@ export const hkuPortfolio: HkuPortfolioContent = {
           id: "reflectie",
           label: "",
           type: "reflection",
-          title: "Wat HKU hier moet zien",
+          title: "Wat dit project laat zien",
           text: "Dit project laat zien dat ik campagnebeeld kan maken vanuit muziekcultuur, met oog voor zowel scherm als straat. Ik test eerst breed, kies daarna scherp en lever drukklaar op. Het eindbeeld is niet alleen een ontwerp — het is gedocumenteerd in context.",
         },
         {
@@ -574,7 +578,7 @@ export const hkuPortfolio: HkuPortfolioContent = {
           id: "reflectie",
           label: "",
           type: "reflection",
-          title: "Wat HKU hier moet zien",
+          title: "Mijn keuzes",
           text: "Mochar laat zien dat ik een merk kan bouwen van onderzoek tot mockup. De hoeveelheid iteraties maakt duidelijk dat ik keuzes test in plaats van het eerste idee vast te zetten. Ik denk in systemen: identiteit, product en digitale toepassing horen bij elkaar.",
         },
         {
@@ -731,7 +735,7 @@ export const hkuPortfolio: HkuPortfolioContent = {
           id: "reflectie",
           label: "",
           type: "reflection",
-          title: "Wat HKU hier moet zien",
+          title: "Onderzoek & richting",
           text: "Dit project toont mijn interesse in culturele infrastructuur en tijdelijke ruimtes. Ik denk in systemen: hoe een idee fysiek, digitaal en sociaal kan bestaan. SSS is een platform, een format en een visuele wereld tegelijk.",
         },
         {
@@ -787,7 +791,7 @@ export const hkuPortfolio: HkuPortfolioContent = {
           id: "reflectie",
           label: "",
           type: "reflection",
-          title: "Wat HKU hier moet zien",
+          title: "Reflectie",
           text: "Deze reeks onderstreept mijn affiniteit met muziek- en nachtcultuur. Ik kan snel sterke beelden maken die ook op straat en in de club werken — met variatie binnen één grafische lijn.",
         },
       ],

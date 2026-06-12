@@ -7,7 +7,7 @@ export function SiteNav() {
   const pathname = usePathname();
   const isHkuPage = pathname === "/hku" || pathname.startsWith("/hku/");
   const cvHref = isHkuPage ? "/hku#cv" : "/#cv";
-  const contactHref = isHkuPage ? "/hku#cv" : "/#contact";
+  const contactHref = isHkuPage ? "/hku#contact" : "/#contact";
 
   return (
     <nav className="site-nav" aria-label="Main navigation">

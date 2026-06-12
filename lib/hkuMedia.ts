@@ -10,14 +10,16 @@ export type HkuMediaItem = {
 export type HkuMediaGroup = {
   title: string;
   items: HkuMediaItem[];
+  pairPortraits?: boolean;
 };
 
 export type HkuViewerSlide = {
-  item: HkuMediaItem;
+  items: HkuMediaItem[];
   groupTitle: string;
   phase: string;
   groupIndex: number;
-  itemIndex: number;
+  itemIndices: number[];
+  key: string;
 };
 
 const PHASE_RULES: { match: RegExp; phase: string }[] = [
@@ -78,15 +80,26 @@ export function flattenMediaGroups(groups: HkuMediaGroup[]): HkuViewerSlide[] {
   groups.forEach((group, groupIndex) => {
     const phase = getHkuPhaseLabel(group.title);
 
-    group.items.forEach((item, itemIndex) => {
+    for (let itemIndex = 0; itemIndex < group.items.length; itemIndex += 1) {
+      const item = group.items[itemIndex];
+      const nextItem = group.items[itemIndex + 1];
+      const shouldPair =
+        group.pairPortraits &&
+        item?.type === "image" &&
+        nextItem?.type === "image";
+      const items = shouldPair ? [item, nextItem] : [item];
+      const itemIndices = shouldPair ? [itemIndex, itemIndex + 1] : [itemIndex];
+
       slides.push({
-        item,
+        items,
         groupTitle: group.title,
         phase,
         groupIndex,
-        itemIndex,
+        itemIndices,
+        key: `${groupIndex}-${itemIndices.join("-")}-${items.map(({ src }) => src).join("|")}`,
       });
-    });
+      if (shouldPair) itemIndex += 1;
+    }
   });
 
   return slides;

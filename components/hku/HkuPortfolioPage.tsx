@@ -112,7 +112,7 @@ export function HkuPortfolioPage({ siteSettings }: HkuPortfolioPageProps) {
           ))}
         </div>
 
-        <ScrollReveal className="hku-contact">
+        <ScrollReveal className="hku-contact" id="contact">
           <p className="section-kicker">Contact</p>
           <ul className="contact-list">
             <li>

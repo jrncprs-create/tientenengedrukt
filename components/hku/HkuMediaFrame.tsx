@@ -2,12 +2,45 @@ import Image from "next/image";
 import type { HkuMediaItem } from "@/lib/hkuMedia";
 
 type HkuMediaFrameProps = {
-  item: HkuMediaItem;
+  items: HkuMediaItem[];
   caption?: string;
   priority?: boolean;
 };
 
-export function HkuMediaFrame({ item, caption, priority = false }: HkuMediaFrameProps) {
+export function HkuMediaFrame({
+  items,
+  caption,
+  priority = false,
+}: HkuMediaFrameProps) {
+  const [item] = items;
+
+  if (!item) return null;
+
+  if (items.length > 1) {
+    return (
+      <figure className="hku-media-frame hku-media-frame-image hku-media-frame-spread">
+        <div className="hku-media-frame-stage hku-media-frame-stage-spread">
+          {items.map((spreadItem, index) => (
+            <div key={spreadItem.src} className="hku-media-frame-pane">
+              <Image
+                src={spreadItem.src}
+                alt={spreadItem.alt}
+                width={2200}
+                height={1600}
+                priority={priority && index === 0}
+                className="hku-media-frame-img"
+                sizes="(max-width: 900px) 100vw, 48vw"
+              />
+            </div>
+          ))}
+        </div>
+        {caption ? (
+          <figcaption className="hku-viewer-caption">{caption}</figcaption>
+        ) : null}
+      </figure>
+    );
+  }
+
   if (item.type === "pdf") {
     return (
       <figure className="hku-media-frame hku-media-frame-pdf">

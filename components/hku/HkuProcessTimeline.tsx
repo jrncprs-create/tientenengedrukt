@@ -21,6 +21,10 @@ export function HkuProcessTimeline({
   onSelectGroup,
 }: HkuProcessTimelineProps) {
   const progress = totalSlides > 1 ? (activeSlideIndex / (totalSlides - 1)) * 100 : 100;
+  const slideIndexWithinGroup =
+    groupStarts[activeGroupIndex] !== undefined
+      ? activeSlideIndex - groupStarts[activeGroupIndex] + 1
+      : null;
 
   return (
     <div className="hku-timeline" aria-label="Proceslijn">
@@ -51,9 +55,7 @@ export function HkuProcessTimeline({
 
       <p className="hku-timeline-meta" aria-live="polite">
         {groups[activeGroupIndex]?.title ?? ""}
-        {groupStarts[activeGroupIndex] !== undefined
-          ? ` - item ${activeSlideIndex - groupStarts[activeGroupIndex] + 1}`
-          : ""}
+        {slideIndexWithinGroup !== null ? ` - slide ${slideIndexWithinGroup}` : ""}
       </p>
     </div>
   );
