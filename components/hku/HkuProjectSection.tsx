@@ -6,13 +6,11 @@ import { HkuProcessBlock } from "@/components/hku/HkuProcessBlock";
 type HkuProjectSectionProps = {
   project: HkuProject;
   index: number;
-  heicNote: string;
 };
 
 export function HkuProjectSection({
   project,
   index,
-  heicNote,
 }: HkuProjectSectionProps) {
   const indexLabel = String(index + 1).padStart(2, "0");
 
@@ -39,7 +37,6 @@ export function HkuProjectSection({
           <HkuMediaSequence
             key={`${project.id}-${group.title}`}
             group={group}
-            heicNote={heicNote}
           />
         ))}
       </div>

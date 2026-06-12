@@ -17,7 +17,7 @@ function getInstagramHref(instagram: string) {
 }
 
 export function HkuPortfolioPage({ siteSettings }: HkuPortfolioPageProps) {
-  const { intro, projects, cv, heicNote } = hkuPortfolio;
+  const { intro, projects, cv } = hkuPortfolio;
 
   return (
     <main className="hku-page">
@@ -65,7 +65,6 @@ export function HkuPortfolioPage({ siteSettings }: HkuPortfolioPageProps) {
             key={project.id}
             project={project}
             index={index}
-            heicNote={heicNote}
           />
         ))}
       </div>

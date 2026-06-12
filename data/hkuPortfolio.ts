@@ -34,7 +34,6 @@ export type HkuPortfolioContent = {
     pdfLabel: string;
     highlights: { year: string; title: string; text: string }[];
   };
-  heicNote: string;
   assetOptimizationNote: string;
   sanityMigrationNote: string;
 };
@@ -85,32 +84,32 @@ const artDesignProcess: HkuMediaGroup = {
   title: "Proces",
   items: [
     hkuFile(
-      [...artDesignBase, "Proces", "Expo pic.heic"],
+      [...artDesignBase, "Proces", "Expo pic.jpg"],
       "Expositie-opstelling",
       "Expo",
     ),
     hkuFile(
-      [...artDesignBase, "Proces", "IMG_2016.heic"],
+      [...artDesignBase, "Proces", "IMG_2016.jpg"],
       "Procesfoto tijdens maken",
     ),
     hkuFile(
-      [...artDesignBase, "Proces", "IMG_2017.heic"],
+      [...artDesignBase, "Proces", "IMG_2017.jpg"],
       "Procesfoto tijdens maken",
     ),
     hkuFile(
-      [...artDesignBase, "Proces", "Printing on a1 for expo.HEIC"],
+      [...artDesignBase, "Proces", "Printing on a1 for expo.jpg"],
       "Print op A1 voor expositie",
     ),
     hkuFile(
-      [...artDesignBase, "Proces", "Styling looks at home.HEIC"],
+      [...artDesignBase, "Proces", "Styling looks at home.jpg"],
       "Styling van looks thuis",
     ),
     hkuFile(
-      [...artDesignBase, "Proces", "unused sweater .HEIC"],
+      [...artDesignBase, "Proces", "unused sweater .jpg"],
       "Ongebruikt prototype sweater",
     ),
     hkuFile(
-      [...artDesignBase, "Proces", "Unused Tanktop.HEIC"],
+      [...artDesignBase, "Proces", "Unused Tanktop.jpg"],
       "Ongebruikt prototype tanktop",
     ),
   ],
@@ -492,10 +491,8 @@ export const hkuPortfolio: HkuPortfolioContent = {
       },
     ],
   },
-  heicNote:
-    "Dit bestand staat als HEIC in de bronmap (Expo pic, IMG_2016, IMG_2017, Printing on a1 for expo, Styling looks at home, unused sweater, Unused Tanktop). HEIC wordt in veel browsers niet ondersteund - converteer naar JPG of WEBP en vervang het pad in data/hkuPortfolio.ts.",
   assetOptimizationNote:
-    "Beelden in public/hku zijn gecomprimeerd naar JPG (max 2200px, quality 82). PDF's en HEIC zijn ongewijzigd. Video Art & Design is gehercodeerd (H.264). Resterend risico: PDF's (~120MB totaal), vooral Proces verslag Art & Design (36MB).",
+    "Beelden in public/hku zijn JPG (max 2200px, quality 82-85). HEIC-bronbestanden blijven in de map; de site gebruikt de JPG-versies. Video Art & Design is gehercodeerd (H.264). Resterend risico: PDF's (~120MB totaal), vooral Proces verslag Art & Design (36MB).",
   sanityMigrationNote:
     "Deze pagina leest nu uit data/hkuPortfolio.ts. Voor Sanity: maak een hkuPortfolio singleton met intro-velden en een array hkuProject-documenten. Elk project krijgt dezelfde velden (type, context, role, process, outcome, reflection) en geneste mediaGroups met getypeerde items (image | pdf | video). Upload assets naar Sanity CDN en vervang src-paden door image/file-referenties. De bestaande project-schema kan blijven voor de hoofdsite; HKU-content is een apart documenttype om toelatingsspecifieke structuur niet te vermengen met de reguliere work-index.",
 };

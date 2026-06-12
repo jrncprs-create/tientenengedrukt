@@ -3,10 +3,9 @@ import type { HkuMediaGroup, HkuMediaItem } from "@/lib/hkuMedia";
 
 type HkuMediaSequenceProps = {
   group: HkuMediaGroup;
-  heicNote: string;
 };
 
-function MediaItem({ item, heicNote }: { item: HkuMediaItem; heicNote: string }) {
+function MediaItem({ item }: { item: HkuMediaItem }) {
   if (item.type === "pdf") {
     return (
       <a
@@ -34,19 +33,6 @@ function MediaItem({ item, heicNote }: { item: HkuMediaItem; heicNote: string })
     );
   }
 
-  if (item.type === "heic") {
-    return (
-      <figure className="hku-media-item hku-media-heic">
-        <div className="hku-heic-placeholder">
-          <p className="hku-heic-title">HEIC - conversie nodig</p>
-          <p className="hku-heic-copy">{item.label ?? item.alt}</p>
-          <p className="hku-heic-note">{heicNote}</p>
-          <code className="hku-heic-path">{item.src.split("/").pop()}</code>
-        </div>
-      </figure>
-    );
-  }
-
   return (
     <figure className="hku-media-item hku-media-image">
       <Image
@@ -64,7 +50,7 @@ function MediaItem({ item, heicNote }: { item: HkuMediaItem; heicNote: string })
   );
 }
 
-export function HkuMediaSequence({ group, heicNote }: HkuMediaSequenceProps) {
+export function HkuMediaSequence({ group }: HkuMediaSequenceProps) {
   if (group.items.length === 0) return null;
 
   return (
@@ -72,7 +58,7 @@ export function HkuMediaSequence({ group, heicNote }: HkuMediaSequenceProps) {
       <h4 className="hku-media-group-title">{group.title}</h4>
       <div className="hku-media-sequence">
         {group.items.map((item) => (
-          <MediaItem key={item.src} item={item} heicNote={heicNote} />
+          <MediaItem key={item.src} item={item} />
         ))}
       </div>
     </section>
