@@ -23,9 +23,13 @@ Gebruik **niet** meer WordPress of Divi als uitgangspunt voor dit project.
 4. Vercel deployt de website.
 5. Cloud86 blijft alleen relevant voor domein, DNS en/of mail-instellingen.
 
-## HKU-aanmeldportfolio subdomein
+## HKU-aanmeldportfolio route
 
-Joep wil tijdelijk of apart een HKU-aanmeldportfolio publiceren op een subdomein van `tientenengedrukt.nl`.
+Joep wil een openbare HKU-aanmeldportfolio publiceren op:
+
+**`https://tientenengedrukt.nl/hku`**
+
+Gebruik dus geen subdomein voor deze versie. De route `/hku` is openbaar zichtbaar en mag vanaf de site benaderbaar zijn.
 
 Doel:
 
@@ -53,7 +57,7 @@ Voor dit portfolio betekent dat:
 - per project laten zien: vraag/context, Joep's rol, onderzoek/proces, keuzes, eindresultaat, reflectie;
 - onaf werk en schetsen niet verstoppen, maar bewust presenteren als bewijs van denken en maken.
 
-## Actieve projectbronnen voor HKU-subsite
+## Actieve projectbronnen voor HKU-route
 
 Aangeleverde bronnen in projectcontext:
 
