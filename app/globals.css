@@ -85,6 +85,11 @@ img {
     transform 180ms ease;
 }
 
+.nav-link-hku {
+  opacity: 0.58;
+  letter-spacing: 0.1em;
+}
+
 .nav-logo {
   font-weight: 650;
 }
@@ -877,5 +882,317 @@ img {
   .capability-item span,
   .context-item span {
     font-size: clamp(2rem, 12vw, 4rem);
+  }
+}
+
+/* HKU toelatingsportfolio */
+.hku-page {
+  padding-top: calc(var(--nav-height) + 2rem);
+}
+
+.hku-hero {
+  padding: 4rem 0 5rem;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.hku-hero-title {
+  margin: 1rem 0 0.5rem;
+  font-size: clamp(3.2rem, 12vw, 10rem);
+  line-height: 0.84;
+  letter-spacing: -0.08em;
+  font-weight: 650;
+  text-transform: uppercase;
+}
+
+.hku-hero-degree {
+  margin: 0;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hku-hero-copy {
+  margin-top: 2.5rem;
+  max-width: 68ch;
+}
+
+.hku-focus-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.hku-focus-item {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hku-index {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.hku-index-list {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+.hku-index-link {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line-strong);
+  transition: background 220ms ease, color 220ms ease;
+}
+
+.hku-index-link:hover {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.hku-index-number {
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hku-index-link:hover .hku-index-number {
+  color: inherit;
+  opacity: 0.72;
+}
+
+.hku-index-title {
+  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.hku-projects {
+  display: flex;
+  flex-direction: column;
+}
+
+.hku-project {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.hku-project-header {
+  width: min(1440px, 100% - 3rem);
+  margin: 0 auto 2.5rem;
+}
+
+.hku-project-index {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hku-project-title {
+  margin: 0.75rem 0 0.5rem;
+  font-size: clamp(2.6rem, 9vw, 7.5rem);
+  line-height: 0.86;
+  letter-spacing: -0.08em;
+  text-transform: uppercase;
+  font-weight: 650;
+}
+
+.hku-project-type {
+  margin: 0;
+  max-width: 52ch;
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.hku-project-body {
+  width: min(1440px, 100% - 3rem);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 2rem;
+}
+
+.hku-process-block {
+  padding-top: 0.25rem;
+}
+
+.hku-process-label {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 650;
+  color: var(--muted);
+}
+
+.hku-process-text {
+  margin: 0;
+  font-size: clamp(0.98rem, 1.2vw, 1.1rem);
+  line-height: 1.5;
+  max-width: 42ch;
+}
+
+.hku-project-media {
+  width: min(1440px, 100% - 3rem);
+  margin: 3.5rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.hku-media-group-title {
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 650;
+}
+
+.hku-media-sequence {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hku-media-item {
+  margin: 0;
+  background: var(--soft);
+  overflow: hidden;
+}
+
+.hku-media-caption {
+  padding: 0.65rem 0.85rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+}
+
+.hku-media-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #111;
+}
+
+.hku-pdf-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.1rem 1rem;
+  border: 1px solid var(--line-strong);
+  transition: background 200ms ease, color 200ms ease;
+}
+
+.hku-pdf-link:hover {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.hku-pdf-label {
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  letter-spacing: -0.03em;
+  font-weight: 540;
+}
+
+.hku-pdf-meta {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.hku-heic-placeholder {
+  padding: 2rem 1.25rem;
+  border: 1px dashed var(--line-strong);
+  background: #fafafa;
+}
+
+.hku-heic-title {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 650;
+}
+
+.hku-heic-copy {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.hku-heic-note {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--muted);
+  max-width: 52ch;
+}
+
+.hku-heic-path {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.hku-cv {
+  padding: 5rem 0 7rem;
+}
+
+.hku-cv-summary {
+  margin-top: 1.5rem;
+  max-width: 58ch;
+}
+
+.hku-cv-download {
+  margin-top: 2rem;
+}
+
+.hku-cv-list {
+  margin-top: 2.5rem;
+}
+
+.hku-contact {
+  margin-top: 4rem;
+}
+
+@media (max-width: 900px) {
+  .hku-hero {
+    padding: 3rem 0 4rem;
+  }
+
+  .hku-project-header,
+  .hku-project-body,
+  .hku-project-media {
+    width: min(1200px, 100% - 1.25rem);
+  }
+
+  .hku-project-body {
+    grid-template-columns: 1fr;
+  }
+
+  .hku-project {
+    padding: 3.5rem 0;
   }
 }
