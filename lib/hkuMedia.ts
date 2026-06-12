@@ -12,6 +12,86 @@ export type HkuMediaGroup = {
   items: HkuMediaItem[];
 };
 
+export type HkuViewerSlide = {
+  item: HkuMediaItem;
+  groupTitle: string;
+  phase: string;
+  groupIndex: number;
+  itemIndex: number;
+};
+
+const PHASE_RULES: { match: RegExp; phase: string }[] = [
+  { match: /schets/i, phase: "schets" },
+  { match: /other options|iteraties?|logo iteraties?/i, phase: "iteratie" },
+  { match: /^proces$/i, phase: "proces" },
+  { match: /proces/i, phase: "proces" },
+  { match: /documentatie|text|pitch|verslag/i, phase: "documentatie" },
+  { match: /mockup|look|poster in use|eindresultaat|identiteit|jaaroverzicht/i, phase: "eindbeeld" },
+  { match: /video/i, phase: "documentatie" },
+];
+
+export function getHkuPhaseLabel(groupTitle: string): string {
+  for (const rule of PHASE_RULES) {
+    if (rule.match.test(groupTitle)) {
+      return rule.phase;
+    }
+  }
+
+  return "proces";
+}
+
+export type HkuMediaSectionKind = "process" | "final";
+
+export function getHkuPhaseDisplay(groupTitle: string): string {
+  const phase = getHkuPhaseLabel(groupTitle);
+
+  if (phase === "iteratie") return "ITERATION";
+  if (phase === "eindbeeld") return "FINAL";
+  return "PROCESS";
+}
+
+export function isFinalMediaGroup(groupTitle: string): boolean {
+  return getHkuPhaseLabel(groupTitle) === "eindbeeld";
+}
+
+export function splitMediaGroupsBySection(groups: HkuMediaGroup[]): {
+  process: HkuMediaGroup[];
+  final: HkuMediaGroup[];
+} {
+  const process: HkuMediaGroup[] = [];
+  const final: HkuMediaGroup[] = [];
+
+  for (const group of groups) {
+    if (isFinalMediaGroup(group.title)) {
+      final.push(group);
+    } else {
+      process.push(group);
+    }
+  }
+
+  return { process, final };
+}
+
+export function flattenMediaGroups(groups: HkuMediaGroup[]): HkuViewerSlide[] {
+  const slides: HkuViewerSlide[] = [];
+
+  groups.forEach((group, groupIndex) => {
+    const phase = getHkuPhaseLabel(group.title);
+
+    group.items.forEach((item, itemIndex) => {
+      slides.push({
+        item,
+        groupTitle: group.title,
+        phase,
+        groupIndex,
+        itemIndex,
+      });
+    });
+  });
+
+  return slides;
+}
+
 const HKU_BASE = "/hku";
 
 export function hkuAsset(...segments: string[]) {

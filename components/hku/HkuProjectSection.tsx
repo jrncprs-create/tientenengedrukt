@@ -1,6 +1,6 @@
 import { ScrollReveal } from "@/components/ScrollReveal";
 import type { HkuProject } from "@/data/hkuPortfolio";
-import { HkuMediaSequence } from "@/components/hku/HkuMediaSequence";
+import { HkuProjectMedia } from "@/components/hku/HkuProjectMedia";
 import { HkuProcessBlock } from "@/components/hku/HkuProcessBlock";
 
 type HkuProjectSectionProps = {
@@ -33,12 +33,11 @@ export function HkuProjectSection({
       </div>
 
       <div className="hku-project-media">
-        {project.mediaGroups.map((group) => (
-          <HkuMediaSequence
-            key={`${project.id}-${group.title}`}
-            group={group}
-          />
-        ))}
+        <HkuProjectMedia
+          projectId={project.id}
+          projectTitle={project.title}
+          mediaGroups={project.mediaGroups}
+        />
       </div>
     </section>
   );
