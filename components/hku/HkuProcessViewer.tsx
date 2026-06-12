@@ -10,6 +10,7 @@ type HkuProcessViewerProps = {
   projectTitle: string;
   mediaGroups: HkuMediaGroup[];
   sectionLabel?: string;
+  hideTimeline?: boolean;
 };
 
 function formatCounter(current: number, total: number) {
@@ -21,6 +22,7 @@ export function HkuProcessViewer({
   projectTitle,
   mediaGroups,
   sectionLabel,
+  hideTimeline = false,
 }: HkuProcessViewerProps) {
   const slides = useMemo(() => flattenMediaGroups(mediaGroups), [mediaGroups]);
   const groupStarts = useMemo(
@@ -115,14 +117,16 @@ export function HkuProcessViewer({
         </p>
       </header>
 
-      <HkuProcessTimeline
-        groups={mediaGroups}
-        activeGroupIndex={currentSlide.groupIndex}
-        activeSlideIndex={activeIndex}
-        totalSlides={total}
-        groupStarts={groupStarts}
-        onSelectGroup={goToGroup}
-      />
+      {hideTimeline ? null : (
+        <HkuProcessTimeline
+          groups={mediaGroups}
+          activeGroupIndex={currentSlide.groupIndex}
+          activeSlideIndex={activeIndex}
+          totalSlides={total}
+          groupStarts={groupStarts}
+          onSelectGroup={goToGroup}
+        />
+      )}
 
       <div
         className="hku-viewer-stage-wrap"

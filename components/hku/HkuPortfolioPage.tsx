@@ -2,6 +2,10 @@ import Link from "next/link";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { hkuPortfolio } from "@/data/hkuPortfolio";
 import { HkuProjectSection } from "@/components/hku/HkuProjectSection";
+import {
+  HkuEindproductenIndex,
+  HkuPortfolioSubnav,
+} from "@/components/hku/HkuPortfolioSubnav";
 import type { SiteSettings } from "@/data/siteContent";
 
 type HkuPortfolioPageProps = {
@@ -21,7 +25,9 @@ export function HkuPortfolioPage({ siteSettings }: HkuPortfolioPageProps) {
 
   return (
     <main className="hku-page">
-      <section className="container hku-hero">
+      <HkuPortfolioSubnav />
+
+      <section className="container hku-hero" id="intro">
         <ScrollReveal>
           <p className="section-kicker">{intro.kicker}</p>
           <h1 className="hku-hero-title">{intro.name}</h1>
@@ -41,7 +47,13 @@ export function HkuPortfolioPage({ siteSettings }: HkuPortfolioPageProps) {
         </ScrollReveal>
       </section>
 
-      <nav className="container hku-index" aria-label="Projecten">
+      <HkuEindproductenIndex projects={projects} />
+
+      <nav
+        className="container hku-index"
+        id="projecten"
+        aria-label="Projecten"
+      >
         <ScrollReveal>
           <p className="section-kicker">Index</p>
           <ul className="hku-index-list">

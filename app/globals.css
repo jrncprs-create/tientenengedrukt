@@ -1020,6 +1020,226 @@ img {
   color: var(--muted);
 }
 
+.hku-subnav {
+  position: sticky;
+  top: var(--nav-height);
+  z-index: 8;
+  background: color-mix(in srgb, var(--background) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.hku-subnav-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  padding: 0.65rem 0;
+}
+
+.hku-subnav-link {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 180ms ease;
+}
+
+.hku-subnav-link:hover {
+  color: var(--foreground);
+}
+
+.hku-subnav-top {
+  margin-left: auto;
+}
+
+.hku-eindproducten {
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.hku-eindproducten-list {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.hku-eindproducten-link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--line);
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.hku-eindproducten-link:hover {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.hku-eindproducten-title {
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.hku-eindproducten-chapter {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hku-eindproducten-link:hover .hku-eindproducten-chapter {
+  color: inherit;
+  opacity: 0.72;
+}
+
+.hku-project-role {
+  margin: 0.75rem 0 0;
+  max-width: 52ch;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hku-project-jump {
+  width: min(1440px, 100% - 3rem);
+  margin: 0 auto 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.hku-project-jump-link {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 180ms ease;
+}
+
+.hku-project-jump-link:hover {
+  color: var(--foreground);
+}
+
+.hku-project-intro {
+  margin-bottom: 2.5rem;
+  max-width: 68ch;
+}
+
+.hku-project-intro-text {
+  margin: 0;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.55;
+}
+
+.hku-project-chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.hku-chapter {
+  width: min(1440px, 100% - 3rem);
+  margin: 0 auto;
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.hku-chapter-reflection {
+  border-top: 1px solid var(--line-strong);
+  padding-top: 3rem;
+}
+
+.hku-chapter-sources {
+  padding-top: 1.5rem;
+  opacity: 0.72;
+}
+
+.hku-chapter-header {
+  max-width: 62ch;
+  margin-bottom: 1.5rem;
+}
+
+.hku-chapter-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.hku-chapter-final .hku-chapter-label {
+  color: var(--foreground);
+}
+
+.hku-chapter-title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.35rem, 3vw, 2.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.hku-chapter-text {
+  margin: 0;
+  font-size: clamp(0.98rem, 1.2vw, 1.1rem);
+  line-height: 1.55;
+}
+
+.hku-chapter-scroller {
+  margin-top: 1rem;
+}
+
+.hku-chapter-scroller .hku-process-viewer {
+  margin-top: 0;
+}
+
+.hku-chapter-scroller .hku-process-viewer:first-child {
+  margin-top: 0;
+}
+
+.hku-sources-kicker {
+  margin: 0 0 0.5rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hku-sources-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+}
+
+.hku-source-link {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  color: var(--muted);
+  transition: color 180ms ease;
+}
+
+.hku-source-link:hover {
+  color: var(--foreground);
+}
+
 .hku-project-body {
   width: min(1440px, 100% - 3rem);
   margin: 0 auto;
@@ -1410,10 +1630,27 @@ img {
     padding: 3rem 0 4rem;
   }
 
+  .hku-subnav-inner {
+    gap: 0.35rem 0.85rem;
+  }
+
+  .hku-subnav-top {
+    margin-left: 0;
+    width: 100%;
+  }
+
   .hku-project-header,
   .hku-project-body,
-  .hku-project-media {
+  .hku-project-media,
+  .hku-project-jump,
+  .hku-chapter {
     width: min(1200px, 100% - 1.25rem);
+  }
+
+  .hku-project-intro {
+    width: min(1200px, 100% - 1.25rem);
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hku-project-body {
