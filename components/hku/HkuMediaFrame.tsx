@@ -29,7 +29,7 @@ export function HkuMediaFrame({
                 height={1600}
                 priority={priority && index === 0}
                 className="hku-media-frame-img"
-                sizes="(max-width: 900px) 100vw, 48vw"
+                sizes="(max-width: 900px) 100vw, 34vw"
               />
             </div>
           ))}
@@ -85,7 +85,7 @@ export function HkuMediaFrame({
           height={1600}
           priority={priority}
           className="hku-media-frame-img"
-          sizes="(max-width: 900px) 100vw, min(1440px, 100vw - 3rem)"
+          sizes="(max-width: 900px) 100vw, 72vw"
         />
       </div>
       {caption ? (

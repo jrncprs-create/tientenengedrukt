@@ -1,5 +1,15 @@
 import type { Project } from "@/lib/projects";
 
+function toMedia(title: string, images: string[]) {
+  return images.map((src, index) => ({
+    src,
+    alt: `${title} beeld ${index + 1}`,
+    originalFilename: src.split("/").pop(),
+    sourcePath: src.startsWith("/") ? `public${src}` : src,
+    sourceType: "public-fallback" as const,
+  }));
+}
+
 const sprinterImages = [
   "/images/projects/sprinter-sound-system/pdf-sprinter-01.jpg",
   "/images/projects/sprinter-sound-system/pdf-sprinter-02.jpg",
@@ -27,6 +37,7 @@ export const projects: Project[] = [
     summary:
       "A visual system for a moving sound concept: bold marks, modular rhythm and a graphic language built for noise, speed and temporary space.",
     theme: "dark",
+    media: toMedia("Sprinter Sound System", sprinterImages),
     images: sprinterImages,
   },
   {
@@ -37,6 +48,7 @@ export const projects: Project[] = [
     summary:
       "Campaign-led visual direction with a focus on image hierarchy, styling references, adaptation and production-ready output.",
     theme: "light",
+    media: toMedia("Bilal Wahib", bilalImages),
     images: bilalImages,
   },
   {
@@ -47,6 +59,7 @@ export const projects: Project[] = [
     summary:
       "A compact selection of visual research, layout tests, image systems and production fragments collected from different project contexts.",
     theme: "light",
+    media: toMedia("Selected Work", selectedImages),
     images: selectedImages,
   },
   {
@@ -57,6 +70,7 @@ export const projects: Project[] = [
     summary:
       "Visual tests for nights, artists and dancefloor-adjacent spaces where typography, image treatment and atmosphere need to work fast.",
     theme: "dark",
+    media: toMedia("Club Visuals", [selectedImages[0], sprinterImages[1], bilalImages[2]]),
     images: [selectedImages[0], sprinterImages[1], bilalImages[2]],
   },
   {
@@ -67,6 +81,7 @@ export const projects: Project[] = [
     summary:
       "A study in object-led campaign images: props, surfaces, gesture and composition translated into usable graphic material.",
     theme: "light",
+    media: toMedia("Campaign Objects", [bilalImages[1], selectedImages[2], sprinterImages[0]]),
     images: [bilalImages[1], selectedImages[2], sprinterImages[0]],
   },
   {
@@ -77,6 +92,7 @@ export const projects: Project[] = [
     summary:
       "Identity fragments for staged environments: signage, screen rhythm, printed matter and spatial details designed as one visual system.",
     theme: "dark",
+    media: toMedia("Stage Identity", [sprinterImages[2], selectedImages[1], bilalImages[0]]),
     images: [sprinterImages[2], selectedImages[1], bilalImages[0]],
   },
   {
@@ -87,6 +103,7 @@ export const projects: Project[] = [
     summary:
       "Typographic sketches and image-led layouts exploring contrast, sequence, pacing and the edge between portfolio and publication.",
     theme: "light",
+    media: toMedia("Editorial Tests", [selectedImages[2], bilalImages[0], sprinterImages[1]]),
     images: [selectedImages[2], bilalImages[0], sprinterImages[1]],
   },
 ];

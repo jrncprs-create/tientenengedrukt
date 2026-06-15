@@ -27,35 +27,40 @@ export function HkuPortfolioPage({ siteSettings }: HkuPortfolioPageProps) {
     <main className="hku-page">
       <HkuPortfolioSubnav />
 
-      <section className="container hku-hero" id="intro">
-        <ScrollReveal>
+      <section className="container hku-hero hku-overview-section" id="intro">
+        <ScrollReveal className="hku-overview-sidebar">
           <p className="section-kicker">{intro.kicker}</p>
           <h1 className="hku-hero-title">{intro.name}</h1>
           <p className="hku-hero-degree">{intro.degree}</p>
         </ScrollReveal>
 
-        <ScrollReveal className="hku-hero-copy">
-          <p className="large-copy">{intro.summary}</p>
-        </ScrollReveal>
+        <div className="hku-overview-main">
+          <ScrollReveal className="hku-hero-copy">
+            <p className="large-copy">{intro.summary}</p>
+          </ScrollReveal>
 
-        <ScrollReveal className="hku-focus-list">
-          {intro.focus.map((item) => (
-            <span key={item} className="hku-focus-item">
-              {item}
-            </span>
-          ))}
-        </ScrollReveal>
+          <ScrollReveal className="hku-focus-list">
+            {intro.focus.map((item) => (
+              <span key={item} className="hku-focus-item">
+                {item}
+              </span>
+            ))}
+          </ScrollReveal>
+        </div>
       </section>
 
       <HkuEindproductenIndex projects={projects} />
 
       <nav
-        className="container hku-index"
+        className="container hku-index hku-overview-section"
         id="projecten"
         aria-label="Projecten"
       >
-        <ScrollReveal>
+        <ScrollReveal className="hku-overview-sidebar">
           <p className="section-kicker">Index</p>
+        </ScrollReveal>
+
+        <ScrollReveal className="hku-overview-main">
           <ul className="hku-index-list">
             {projects.map((project, index) => (
               <li key={project.id}>
@@ -81,64 +86,66 @@ export function HkuPortfolioPage({ siteSettings }: HkuPortfolioPageProps) {
         ))}
       </div>
 
-      <section className="container hku-cv" id="cv">
-        <ScrollReveal>
+      <section className="container hku-cv hku-overview-section" id="cv">
+        <ScrollReveal className="hku-overview-sidebar">
           <p className="section-kicker">Ondersteunend</p>
           <h2 className="editorial-heading">{cv.title}</h2>
           <p className="body-copy hku-cv-summary">{cv.summary}</p>
         </ScrollReveal>
 
-        <ScrollReveal className="hku-cv-download">
-          <a
-            href={cv.pdfHref}
-            className="hku-pdf-link hku-cv-pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="hku-pdf-label">{cv.pdfLabel}</span>
-            <span className="hku-pdf-meta">PDF - openen in nieuw tabblad</span>
-          </a>
-        </ScrollReveal>
+        <div className="hku-overview-main">
+          <ScrollReveal className="hku-cv-download">
+            <a
+              href={cv.pdfHref}
+              className="hku-pdf-link hku-cv-pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="hku-pdf-label">{cv.pdfLabel}</span>
+              <span className="hku-pdf-meta">PDF - openen in nieuw tabblad</span>
+            </a>
+          </ScrollReveal>
 
-        <div className="cv-list hku-cv-list">
-          {cv.highlights.map((item) => (
-            <ScrollReveal key={`${item.year}-${item.title}`} className="cv-row">
-              <span className="cv-year">{item.year}</span>
-              <div>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </div>
-            </ScrollReveal>
-          ))}
+          <div className="cv-list hku-cv-list">
+            {cv.highlights.map((item) => (
+              <ScrollReveal key={`${item.year}-${item.title}`} className="cv-row">
+                <span className="cv-year">{item.year}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal className="hku-contact" id="contact">
+            <p className="section-kicker">Contact</p>
+            <ul className="contact-list">
+              <li>
+                <span>Mail</span>
+                <a href={`mailto:${siteSettings.email}`}>{siteSettings.email}</a>
+              </li>
+              <li>
+                <span>Instagram</span>
+                <a href={getInstagramHref(siteSettings.instagram)}>
+                  {siteSettings.instagram}
+                </a>
+              </li>
+              <li>
+                <span>Locatie</span>
+                <span>{siteSettings.location}</span>
+              </li>
+            </ul>
+          </ScrollReveal>
+
+          <ScrollReveal className="back-link-wrap">
+            <p>
+              <Link href="/" className="back-link">
+                Terug naar tientenengedrukt.nl
+              </Link>
+            </p>
+          </ScrollReveal>
         </div>
-
-        <ScrollReveal className="hku-contact" id="contact">
-          <p className="section-kicker">Contact</p>
-          <ul className="contact-list">
-            <li>
-              <span>Mail</span>
-              <a href={`mailto:${siteSettings.email}`}>{siteSettings.email}</a>
-            </li>
-            <li>
-              <span>Instagram</span>
-              <a href={getInstagramHref(siteSettings.instagram)}>
-                {siteSettings.instagram}
-              </a>
-            </li>
-            <li>
-              <span>Locatie</span>
-              <span>{siteSettings.location}</span>
-            </li>
-          </ul>
-        </ScrollReveal>
-
-        <ScrollReveal className="back-link-wrap">
-          <p>
-            <Link href="/" className="back-link">
-              Terug naar tientenengedrukt.nl
-            </Link>
-          </p>
-        </ScrollReveal>
       </section>
     </main>
   );

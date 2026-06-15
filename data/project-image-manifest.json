@@ -1,0 +1,190 @@
+{
+  "projects": [
+    {
+      "routeSlug": "art-and-design-eindopdracht-test-test",
+      "sanitySlug": "art-and-design",
+      "items": [
+        {
+          "kind": "cover",
+          "originalFilename": "LOOK 1_5.png",
+          "sourcePath": "*Portfolio/1_Art & Design/Look 1/LOOK 1_5.png",
+          "sourceType": "portfolio"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "LOOK 1_1.png",
+          "sourcePath": "*Portfolio/1_Art & Design/Look 1/LOOK 1_1.png",
+          "sourceType": "portfolio"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "LOOK 1_2.png",
+          "sourcePath": "*Portfolio/1_Art & Design/Look 1/LOOK 1_2.png",
+          "sourceType": "portfolio"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "LOOK 1_3.png",
+          "sourcePath": "*Portfolio/1_Art & Design/Look 1/LOOK 1_3.png",
+          "sourceType": "portfolio"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "LOOK 1_4.png",
+          "sourcePath": "*Portfolio/1_Art & Design/Look 1/LOOK 1_4.png",
+          "sourceType": "portfolio"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "LOOK 1_5.png",
+          "sourcePath": "*Portfolio/1_Art & Design/Look 1/LOOK 1_5.png",
+          "sourceType": "portfolio"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "LOOK 1_6.png",
+          "sourcePath": "*Portfolio/1_Art & Design/Look 1/LOOK 1_6.png",
+          "sourceType": "portfolio"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "LOOK 1_7.png",
+          "sourcePath": "*Portfolio/1_Art & Design/Look 1/LOOK 1_7.png",
+          "sourceType": "portfolio"
+        }
+      ]
+    },
+    {
+      "routeSlug": "bilal-wahib",
+      "sanitySlug": "bilal-wahib",
+      "items": [
+        {
+          "kind": "cover",
+          "originalFilename": "pdf-bilal-01.jpg",
+          "sourcePath": "public/images/projects/bilal-wahib/pdf-bilal-01.jpg",
+          "sourceType": "public-fallback"
+        }
+      ]
+    },
+    {
+      "routeSlug": "selected-work",
+      "sanitySlug": "selected-work",
+      "items": [
+        {
+          "kind": "cover",
+          "originalFilename": "pdf-selected-01.jpg",
+          "sourcePath": "public/images/projects/selected-work/pdf-selected-01.jpg",
+          "sourceType": "public-fallback"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "pdf-selected-02.jpg",
+          "sourcePath": "public/images/projects/selected-work/pdf-selected-02.jpg",
+          "sourceType": "public-fallback"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "pdf-selected-03.jpg",
+          "sourcePath": "public/images/projects/selected-work/pdf-selected-03.jpg",
+          "sourceType": "public-fallback"
+        }
+      ]
+    },
+    {
+      "routeSlug": "club-visuals",
+      "sanitySlug": "club-visuals",
+      "items": [
+        {
+          "kind": "cover",
+          "originalFilename": "pdf-selected-01.jpg",
+          "sourcePath": "public/images/projects/selected-work/pdf-selected-01.jpg",
+          "sourceType": "public-fallback"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "pdf-sprinter-02.jpg",
+          "sourcePath": "public/images/projects/sprinter-sound-system/pdf-sprinter-02.jpg",
+          "sourceType": "public-fallback"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "pdf-bilal-03.jpg",
+          "sourcePath": "public/images/projects/bilal-wahib/pdf-bilal-03.jpg",
+          "sourceType": "public-fallback"
+        }
+      ]
+    },
+    {
+      "routeSlug": "campaign-objects",
+      "sanitySlug": "campaign-objects",
+      "items": [
+        {
+          "kind": "cover",
+          "originalFilename": "pdf-bilal-02.jpg",
+          "sourcePath": "public/images/projects/bilal-wahib/pdf-bilal-02.jpg",
+          "sourceType": "public-fallback"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "pdf-selected-03.jpg",
+          "sourcePath": "public/images/projects/selected-work/pdf-selected-03.jpg",
+          "sourceType": "public-fallback"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "pdf-sprinter-01.jpg",
+          "sourcePath": "public/images/projects/sprinter-sound-system/pdf-sprinter-01.jpg",
+          "sourceType": "public-fallback"
+        }
+      ]
+    },
+    {
+      "routeSlug": "stage-identity",
+      "sanitySlug": "stage-identity",
+      "items": [
+        {
+          "kind": "cover",
+          "originalFilename": "pdf-sprinter-03.jpg",
+          "sourcePath": "public/images/projects/sprinter-sound-system/pdf-sprinter-03.jpg",
+          "sourceType": "public-fallback"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "pdf-selected-02.jpg",
+          "sourcePath": "public/images/projects/selected-work/pdf-selected-02.jpg",
+          "sourceType": "public-fallback"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "pdf-bilal-01.jpg",
+          "sourcePath": "public/images/projects/bilal-wahib/pdf-bilal-01.jpg",
+          "sourceType": "public-fallback"
+        }
+      ]
+    },
+    {
+      "routeSlug": "editorial-tests",
+      "sanitySlug": "editorial-tests",
+      "items": [
+        {
+          "kind": "cover",
+          "originalFilename": "pdf-selected-03.jpg",
+          "sourcePath": "public/images/projects/selected-work/pdf-selected-03.jpg",
+          "sourceType": "public-fallback"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "pdf-bilal-01.jpg",
+          "sourcePath": "public/images/projects/bilal-wahib/pdf-bilal-01.jpg",
+          "sourceType": "public-fallback"
+        },
+        {
+          "kind": "gallery",
+          "originalFilename": "pdf-sprinter-02.jpg",
+          "sourcePath": "public/images/projects/sprinter-sound-system/pdf-sprinter-02.jpg",
+          "sourceType": "public-fallback"
+        }
+      ]
+    }
+  ]
+}

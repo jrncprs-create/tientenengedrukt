@@ -24,52 +24,56 @@ export function HkuProjectSection({ project, index }: HkuProjectSectionProps) {
       id={project.id}
       aria-labelledby={`${project.id}-title`}
     >
-      <ScrollReveal className="hku-project-header">
-        <p className="hku-project-index">{indexLabel}</p>
-        <h2 className="hku-project-title" id={`${project.id}-title`}>
-          {project.title}
-        </h2>
-        <p className="hku-project-type">{project.type}</p>
-        {project.role ? (
-          <p className="hku-project-role">{project.role}</p>
-        ) : null}
-      </ScrollReveal>
+      <div className="hku-project-layout">
+        <ScrollReveal className="hku-project-sidebar">
+          <div className="hku-project-sidebar-copy">
+            <p className="hku-project-index">{indexLabel}</p>
+            <h2 className="hku-project-title" id={`${project.id}-title`}>
+              {project.title}
+            </h2>
+            <p className="hku-project-type">{project.type}</p>
+            {project.role ? (
+              <p className="hku-project-role">{project.role}</p>
+            ) : null}
 
-      <nav className="hku-project-jump" aria-label={`Navigatie ${project.title}`}>
-        {processId ? (
-          <a href={`#${project.id}-${processId}`} className="hku-project-jump-link">
-            Proces
-          </a>
-        ) : null}
-        {finalId ? (
-          <a href={`#${project.id}-${finalId}`} className="hku-project-jump-link">
-            Eindproduct
-          </a>
-        ) : null}
-        {reflectionId ? (
-          <a href={`#${project.id}-${reflectionId}`} className="hku-project-jump-link">
-            Reflectie
-          </a>
-        ) : null}
-      </nav>
+            {introChapter ? (
+              <div className="hku-project-intro" id={`${project.id}-intro`}>
+                <p className="hku-project-intro-text">{introChapter.text}</p>
+              </div>
+            ) : null}
+          </div>
 
-      {introChapter ? (
-        <div className="container hku-project-intro" id={`${project.id}-intro`}>
-          <p className="hku-project-intro-text">{introChapter.text}</p>
+          <nav className="hku-project-jump" aria-label={`Navigatie ${project.title}`}>
+            {processId ? (
+              <a href={`#${project.id}-${processId}`} className="hku-project-jump-link">
+                Proces
+              </a>
+            ) : null}
+            {finalId ? (
+              <a href={`#${project.id}-${finalId}`} className="hku-project-jump-link">
+                Eindproduct
+              </a>
+            ) : null}
+            {reflectionId ? (
+              <a href={`#${project.id}-${reflectionId}`} className="hku-project-jump-link">
+                Reflectie
+              </a>
+            ) : null}
+          </nav>
+        </ScrollReveal>
+
+        <div className="hku-project-chapters">
+          {project.chapters
+            .filter((chapter) => chapter.type !== "intro")
+            .map((chapter) => (
+              <HkuProjectChapter
+                key={chapter.id}
+                projectId={project.id}
+                projectTitle={project.title}
+                chapter={chapter}
+              />
+            ))}
         </div>
-      ) : null}
-
-      <div className="hku-project-chapters">
-        {project.chapters
-          .filter((chapter) => chapter.type !== "intro")
-          .map((chapter) => (
-            <HkuProjectChapter
-              key={chapter.id}
-              projectId={project.id}
-              projectTitle={project.title}
-              chapter={chapter}
-            />
-          ))}
       </div>
     </section>
   );

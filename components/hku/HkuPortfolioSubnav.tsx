@@ -59,12 +59,15 @@ export function HkuEindproductenIndex({ projects }: HkuPortfolioSubnavProps) {
 
   return (
     <nav
-      className="container hku-eindproducten"
+      className="container hku-eindproducten hku-overview-section"
       id="eindproducten"
       aria-label="Eindproducten"
     >
-      <p className="section-kicker">Eindproducten</p>
-      <ul className="hku-eindproducten-list">
+      <div className="hku-overview-sidebar">
+        <p className="section-kicker">Eindproducten</p>
+      </div>
+
+      <ul className="hku-eindproducten-list hku-overview-main">
         {entries.map((entry) => (
           <li key={entry.projectId}>
             <a

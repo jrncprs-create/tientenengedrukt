@@ -1,5 +1,30 @@
 import { defineField, defineType } from "sanity";
 
+const imageSourceFields = [
+  defineField({
+    name: "originalFilename",
+    title: "Originele bestandsnaam",
+    type: "string",
+  }),
+  defineField({
+    name: "sourcePath",
+    title: "Bronpad",
+    type: "string",
+    description: "Pad van het oorspronkelijke bestand binnen dit project.",
+  }),
+  defineField({
+    name: "sourceType",
+    title: "Bronsoort",
+    type: "string",
+    options: {
+      list: [
+        { title: "Portfolio map", value: "portfolio" },
+        { title: "Public fallback", value: "public-fallback" },
+      ],
+    },
+  }),
+];
+
 export const projectType = defineType({
   name: "project",
   title: "Project",
@@ -51,6 +76,7 @@ export const projectType = defineType({
       description:
         "Dit beeld wordt gebruikt in overzichten en bovenaan de projectpagina.",
       options: { hotspot: true },
+      fields: imageSourceFields,
     }),
     defineField({
       name: "galleryImages",
@@ -70,6 +96,7 @@ export const projectType = defineType({
               type: "image",
               options: { hotspot: true },
             }),
+            ...imageSourceFields,
             defineField({
               name: "caption",
               title: "Bijschrift",

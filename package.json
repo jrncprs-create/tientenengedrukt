@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "sanity:sync-content": "node scripts/sync-sanity-content.mjs",
+    "sanity:sync-image-metadata": "node scripts/sync-project-image-metadata.mjs",
     "sanity:migrate-ids": "node scripts/migrate-sanity-ids.mjs",
     "start": "next start",
     "lint": "eslint"

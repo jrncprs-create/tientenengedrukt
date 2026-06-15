@@ -9,8 +9,34 @@ export const projectsQuery = groq`
     category,
     summary,
     theme,
-    coverImage,
-    galleryImages,
+    "coverImage": {
+      originalFilename,
+      sourcePath,
+      sourceType,
+      "asset": coverImage.asset->{
+        url,
+        originalFilename,
+        metadata {
+          dimensions
+        }
+      }
+    },
+    "galleryImages": galleryImages[]{
+      caption,
+      alt,
+      originalFilename,
+      sourcePath,
+      sourceType,
+      "image": {
+        "asset": image.asset->{
+          url,
+          originalFilename,
+          metadata {
+            dimensions
+          }
+        }
+      }
+    },
     sortOrder,
     featured
   }
