@@ -1,78 +1,29 @@
-import Image from "next/image";
-import { ScrollReveal } from "./ScrollReveal";
+import Link from "next/link";
+import styles from "./Header.module.css";
 
 type HeaderProps = {
-  kicker: string;
-  title: string;
-  subtitle: string;
-  note: string;
-  heroMediaType?: "image" | "video";
-  heroImage?: string | null;
-  heroVideo?: string | null;
-  heroVideoPoster?: string | null;
+  variant?: "overlay" | "light";
 };
 
-export function Header({
-  kicker,
-  title,
-  subtitle,
-  note,
-  heroMediaType = "image",
-  heroImage,
-  heroVideo,
-}: HeaderProps) {
-  const shouldShowVideo = heroMediaType === "video" && heroVideo;
-  const shouldShowImage = !shouldShowVideo && heroImage;
-  const hasHeroMedia = shouldShowVideo || shouldShowImage;
+export default function Header({ variant = "overlay" }: HeaderProps) {
+  const className =
+    variant === "light"
+      ? `${styles.header} ${styles.static}`
+      : styles.header;
 
   return (
-    <section className="hero">
-      <div
-        className={`hero-video-placeholder${hasHeroMedia ? " hero-media-active" : ""}`}
-        aria-hidden="true"
-      >
-        {shouldShowVideo ? (
-          <video
-            className="hero-background-video"
-            src={heroVideo}
-            preload="metadata"
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
-        ) : null}
-        {shouldShowImage ? (
-          <Image
-            src={heroImage}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="hero-background-image"
-          />
-        ) : null}
-        {!hasHeroMedia ? (
-          <>
-            <span className="video-shape video-shape-one" />
-            <span className="video-shape video-shape-two" />
-            <span className="video-shape video-shape-three" />
-          </>
-        ) : null}
-      </div>
-
-      <div className="container hero-inner">
-        <ScrollReveal className="site-header">
-          <header>
-            <p className="site-kicker">{kicker}</p>
-            <h1 className="site-title">{title}</h1>
-            <div className="site-intro-grid">
-              <p className="site-subtitle">{subtitle}</p>
-              <p className="site-note">{note}</p>
-            </div>
-          </header>
-        </ScrollReveal>
-      </div>
-    </section>
+    <header className={className}>
+      <nav className={styles.nav} aria-label="Main">
+        <Link className={styles.link} href="/work">
+          Work
+        </Link>
+        <Link className={styles.link} href="/contact">
+          Contact
+        </Link>
+        <Link className={styles.link} href="/about">
+          About
+        </Link>
+      </nav>
+    </header>
   );
 }

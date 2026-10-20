@@ -5,27 +5,20 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "sanity:sync-content": "node scripts/sync-sanity-content.mjs",
-    "sanity:sync-image-metadata": "node scripts/sync-project-image-metadata.mjs",
-    "sanity:migrate-ids": "node scripts/migrate-sanity-ids.mjs",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@sanity/vision": "^5.30.0",
-    "next": "16.2.7",
-    "next-sanity": "^13.0.11",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "sanity": "^5.30.0",
-    "server-only": "^0.0.1"
+    "next": "^15.3.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.7",
-    "typescript": "^5"
+    "@types/node": "^22.15.21",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
+    "eslint": "^9.27.0",
+    "eslint-config-next": "^15.3.3",
+    "typescript": "^5.8.3"
   }
 }

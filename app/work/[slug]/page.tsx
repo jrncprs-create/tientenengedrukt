@@ -1,65 +1,47 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ProjectMediaGallery } from "@/components/ProjectMediaGallery";
-import { ScrollReveal } from "@/components/ScrollReveal";
-import { getProjectsWithFallback } from "@/lib/projects";
+import Header from "@/components/Header";
+import { getProjectBySlug, projects } from "@/lib/projects";
 
-export const revalidate = 60;
-
-type ProjectPageProps = {
+type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export async function generateStaticParams() {
-  const projects = await getProjectsWithFallback();
-
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
+export function generateStaticParams() {
+  return projects.map((p) => ({ slug: p.slug }));
 }
 
-export default async function ProjectPage({ params }: ProjectPageProps) {
+export default async function ProjectDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const projects = await getProjectsWithFallback();
-  const project = projects.find((item) => item.slug === slug);
+  const project = getProjectBySlug(slug);
 
   if (!project) {
     notFound();
   }
 
   return (
-    <main className="container project-page">
-      <section className="project-layout">
-        <aside className="project-sidebar-shell">
-          <div className="project-sidebar">
-            <ScrollReveal className="project-sidebar-copy">
-              <header className="project-header">
-                <h1 className="project-heading">{project.title}</h1>
-                <p className="project-details">
-                  <span>{project.year}</span>
-                  <span>{project.category}</span>
-                </p>
-                <p className="project-summary">{project.summary}</p>
-              </header>
-            </ScrollReveal>
-
-            <ScrollReveal className="back-link-wrap project-back-link">
-              <p>
-                <Link href="/" className="back-link">
-                  Terug naar homepage
-                </Link>
-              </p>
-            </ScrollReveal>
-          </div>
-        </aside>
-
-        <ProjectMediaGallery
-          key={project.slug}
-          projectSlug={project.slug}
-          projectTitle={project.title}
-          media={project.media}
+    <>
+      <Header variant="light" />
+      <article className="projectDetail">
+        <h1 className="projectDetailTitle">{project.title}</h1>
+        <p className="projectDetailMeta">
+          {project.year} · {project.category}
+        </p>
+        <p className="projectDetailDescription">{project.description}</p>
+        <Image
+          className="projectDetailImage"
+          src={project.image}
+          alt={project.title}
+          width={1600}
+          height={1000}
+          sizes="(max-width: 1200px) 100vw, 72rem"
+          priority
         />
-      </section>
-    </main>
+        <Link className="projectDetailBack" href="/work">
+          ← Back to Work
+        </Link>
+      </article>
+    </>
   );
 }

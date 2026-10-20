@@ -1,29 +1,22 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import { SiteNav } from "@/components/SiteNav";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Joep Cuypers — Portfolio 2026",
-  description:
-    "Portfolio van Joep Cuypers: art direction, visual concepts and production for events, campaigns and branded spaces.",
+  title: "Joep — Tientenengedrukt",
+  description: "Portfolio van Joep — styling, design en visual work.",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl" className={geistSans.variable}>
+    <html lang="nl">
       <body>
-        <SiteNav />
         {children}
+        <Footer />
       </body>
     </html>
   );

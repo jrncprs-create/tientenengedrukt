@@ -1,0 +1,94 @@
+.section {
+  --preview-height: calc(100vh / 6);
+  --preview-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  padding: clamp(4rem, 10vw, 7rem) clamp(1.25rem, 5vw, 4rem)
+    clamp(6rem, 14vw, 10rem);
+  overflow-x: clip;
+}
+
+.label {
+  text-align: center;
+  font-size: clamp(0.65rem, 0.6rem + 0.15vw, 0.75rem);
+  letter-spacing: 0.22em;
+  margin: 0 0 clamp(3rem, 7vw, 5rem);
+  opacity: 0.55;
+}
+
+.list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 52rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.15rem, 0.5vw, 0.35rem);
+}
+
+.item {
+  width: 100%;
+  text-align: center;
+  padding: clamp(0.65rem, 1.8vw, 1.1rem) 0;
+}
+
+.link {
+  display: inline-block;
+  font-family: inherit;
+  font-size: clamp(1.15rem, 0.95rem + 1.1vw, 2.15rem);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  line-height: 1.55;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+}
+
+.link:hover {
+  opacity: 1;
+}
+
+.preview {
+  display: block;
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    max-height 700ms var(--preview-ease),
+    opacity 500ms var(--preview-ease);
+}
+
+.previewInner {
+  position: relative;
+  width: 100%;
+  height: var(--preview-height);
+}
+
+.previewImage {
+  object-fit: cover;
+  object-position: center;
+}
+
+.item:hover .preview,
+.item:focus-within .preview {
+  max-height: var(--preview-height);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 767px) {
+  .link {
+    font-size: clamp(1rem, 0.9rem + 0.8vw, 1.35rem);
+    line-height: 1.65;
+  }
+
+  .item {
+    padding: clamp(0.5rem, 1.2vw, 0.85rem) 0;
+  }
+}

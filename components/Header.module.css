@@ -1,0 +1,48 @@
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: clamp(1.25rem, 3vw, 2.5rem) clamp(1rem, 4vw, 3rem);
+  pointer-events: none;
+  font-family: inherit;
+}
+
+.nav {
+  display: flex;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  pointer-events: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  font-family: inherit;
+  font-size: clamp(0.85rem, 0.75rem + 0.6vw, 1.35rem);
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  mix-blend-mode: difference;
+  transition: opacity 0.2s ease;
+}
+
+.link:hover {
+  opacity: 0.6;
+}
+
+.static {
+  position: relative;
+  padding-bottom: 0;
+}
+
+.static .link {
+  color: #111;
+  mix-blend-mode: normal;
+}

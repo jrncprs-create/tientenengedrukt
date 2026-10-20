@@ -1,52 +1,28 @@
-# tientenengedrukt
+# Tientenengedrukt — Joep portfolio
 
-Schone technische basis voor een portfolio-site in Next.js (App Router + TypeScript), zonder uitgewerkte eindcontent.
+Minimale Next.js portfolio-site (App Router, TypeScript, lokale data).
 
-## Lokaal starten
-
-1. Installeer dependencies:
+## Starten
 
 ```bash
+cd "/Users/hd/Documents/PlatformIO/Projects/Tientenengedrukt"
 npm install
-```
-
-2. Start development server:
-
-```bash
 npm run dev
 ```
 
-3. Open:
+Open [http://localhost:3000](http://localhost:3000).
 
-[http://localhost:3000](http://localhost:3000)
+## Routes
 
-## Build en typecheck
+- `/` — Home met hero + selected work
+- `/work` — Alle projecten
+- `/work/[slug]` — Projectdetail
+- `/about` — Over
+- `/contact` — Contact
+- `/legal` — Legal placeholder
 
-```bash
-npm run build
-```
+## Content aanpassen
 
-De build controleert ook TypeScript-validatie.
-
-## Projectstructuur (belangrijkste bestanden)
-
-- `app/page.tsx`: minimalistische homepage met naam, subtitel en selected work lijst
-- `app/work/[slug]/page.tsx`: simpele dynamische projectpagina
-- `components/Header.tsx`: hero/header met naam en subtitel
-- `components/ProjectIndex.tsx`: overzichtssectie voor projecten
-- `components/ProjectCard.tsx`: klikbare projectregel met hover state
-- `components/ScrollReveal.tsx`: herbruikbare IntersectionObserver reveal component
-- `data/projects.ts`: tijdelijke projectdata die homepage en detailpagina voedt
-- `public/images/projects/_placeholder/placeholder.svg`: tijdelijke placeholder voor beeld
-
-## Projecten aanpassen
-
-- Pas projectinhoud aan in `data/projects.ts`
-- Voeg/verwissel beelden via paden in `images: string[]`
-- Plaats echte bestanden in `public/images/projects/<projectnaam>/...`
-- Update daarna de image-paden in `data/projects.ts`
-
-## Styling
-
-- Globale styling staat in `app/globals.css`
-- Opzet is sober: zwart/wit, veel witruimte, grote typografie en eenvoudige hover/reveal-states
+- Projecten: `lib/projects.ts`
+- Contact & socials: `lib/site.ts`
+- Beelden: vervang bestanden in `public/images/` en update paden in `lib/projects.ts`
